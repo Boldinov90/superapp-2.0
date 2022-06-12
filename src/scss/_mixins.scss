@@ -1,0 +1,11 @@
+// Для вызова @include
+@mixin hoverAndActiveBtn($bgcolor, $transition, $textcolor) {
+   background-color: $bgcolor;
+   transition: $transition;
+   color: $textcolor;
+}
+@mixin flexPosition($jc, $ai) {
+   display: flex;
+   justify-content: $jc;
+   align-items: $ai;
+}

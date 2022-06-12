@@ -1,0 +1,11 @@
+// Для вызова @extend
+%flexallcenter{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+%pagetitle{
+   font-size: 28px;
+   font-weight: 400;
+   text-align: center;
+}

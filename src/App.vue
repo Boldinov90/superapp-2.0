@@ -1,30 +1,40 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+   <div class="app" :class="{ dark: IS_DARK_THEME }">
+      <Header />
+      <router-view />
+   </div>
 </template>
 
+<script>
+import Header from './layouts/Header.vue'
+import { mapActions, mapGetters } from 'vuex'
+
+export default {
+   components: {
+      Header,
+   },
+   computed: {
+      ...mapGetters(['IS_DARK_THEME']),
+   },
+   methods: {
+      ...mapActions(['GET_ALL_TASKS']),
+   },
+   beforeMount() {
+      this.GET_ALL_TASKS()
+   },
+}
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.app{
+   font-family: 'Montserrat', sans-serif;
+   height: 100vh;
+   background-color: #E3E3E3;
+   color: #212121;
+}
+.dark{
+   background-color: #383838;
+   color: #E8E8E8;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
