@@ -19,9 +19,7 @@ export default createStore({
          commit('TOGGLE_IS_DARK_THEME')
       },
       async GET_ALL_TASKS({ commit }) {
-         const response = await axios.get(
-            'http://localhost:3000/tasks'
-         )
+         const response = await axios.get('http://localhost:3000/tasks')
          commit('GET_ALL_TASKS', response)
          return response
       },
@@ -30,9 +28,12 @@ export default createStore({
       IS_DARK_THEME(state) {
          return state.isDarkTheme
       },
-      TASKS(state){
+      TASKS(state) {
          return state.tasks
-      }
+      },
+      TASKSNAV(state) {
+         return state.tasksNav
+      },
    },
    modules: {},
 })

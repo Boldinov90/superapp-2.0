@@ -1,29 +1,34 @@
 {
-   "tasks":[
+   "tasks": [
       {
          "id": 1,
          "taskTitle": "Помыть посуду",
-         "isDone": false
+         "checkbox": true
       },
       {
          "id": 2,
          "taskTitle": "Купить молоко",
-         "isDone": false
+         "checkbox": false
       },
       {
          "id": 3,
          "taskTitle": "Позвонить маме",
-         "isDone": false
+         "checkbox": true
       },
       {
          "id": 4,
          "taskTitle": "Покормить кошку",
-         "isDone": false
+         "checkbox": false
       },
       {
          "id": 5,
          "taskTitle": "Купить масло",
-         "isDone": false
+         "checkbox": false
+      },
+      {
+         "id": 6,
+         "taskTitle": "Убить Билла",
+         "checkbox": false
       }
    ]
 }

@@ -26,15 +26,14 @@ export default {
 </script>
 
 <style lang="scss">
-.app{
+.app {
    font-family: 'Montserrat', sans-serif;
    height: 100vh;
-   background-color: #E3E3E3;
+   background-color: #e3e3e3;
    color: #212121;
 }
-.dark{
+.dark {
    background-color: #383838;
-   color: #E8E8E8;
+   color: #e8e8e8;
 }
-
 </style>

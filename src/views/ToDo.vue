@@ -3,7 +3,7 @@
       <div class="todo container" :class="{ 'dark-container': IS_DARK_THEME }">
          <h1 class="todo__title">{{ pageTitle }}</h1>
          <div class="todo__content content">
-            <ToDoFilterNav class="content__navigation" />
+            <ToDoFilterNav class="content__navigation"/>
             <ToDoList class="content__todo-list" />
          </div>
       </div>
@@ -32,15 +32,20 @@ export default {
 <style lang="scss" scoped>
 .wrapper {
    .todo {
+      padding-top: 60px;
+
       .todo__title {
          @extend %pagetitle;
       }
       .todo__content {
-         @include flexPosition( _, center);
+         // @include flexPosition(_, center);
+         display: grid;
+         grid-template-columns: 1fr 4fr;
          .content__navigation {
             margin-right: 40px;
          }
          .content__todo-list {
+            // overflow-y: scroll;
          }
       }
    }

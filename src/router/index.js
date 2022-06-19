@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ToDo from '../views/ToDo.vue'
 import CssAnimate from '../views/CssAnimate.vue'
-import Calculater from '../views/Calculater.vue'
+import Calculator from '../views/Calculator.vue'
 
 const routes = [
    {
@@ -15,9 +15,9 @@ const routes = [
       component: CssAnimate,
    },
    {
-      path: '/calculater',
-      name: 'calculater',
-      component: Calculater,
+      path: '/calculator',
+      name: 'calculator',
+      component: Calculator,
    },
 ]
 

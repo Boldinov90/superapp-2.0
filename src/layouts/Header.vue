@@ -1,22 +1,23 @@
 <template>
    <header class="wrapper">
-      <div class="header container" :class="{ 'dark-container': IS_DARK_THEME }">
-         <div
-            class="header__logo"
-         >
+      <div
+         class="header container"
+         :class="{ 'dark-container': IS_DARK_THEME }"
+      >
+         <div class="header__logo">
             {{ textLogo }}
          </div>
          <ul class="header__navigation">
             <li class="header__navigation-item">
-               <router-link class="navItem" to="/"> ToDo </router-link>
+               <router-link class="nav-item" to="/"> ToDo </router-link>
             </li>
             <li class="header__navigation-item">
-               <router-link class="navItem" to="/css-animate">
+               <router-link class="nav-item" to="/css-animate">
                   CSS Анимации
                </router-link>
             </li>
             <li class="header__navigation-item">
-               <router-link class="navItem" to="/calculater">
+               <router-link class="nav-item" to="/calculator">
                   Калькулятор
                </router-link>
             </li>
@@ -62,6 +63,10 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
+   position: fixed;
+   left: 0;
+   right: 0;
+   top: 0;
    .header {
       height: 60px;
       @extend %flexallcenter;
@@ -75,12 +80,17 @@ export default {
          justify-content: space-between;
          flex-wrap: wrap;
          .header__navigation-item {
-
+            .nav-item {
+               color: #969696;
+            }
          }
       }
       .header__btn-light {
+         background-color: aquamarine;
       }
       .header__btn-dark {
+         background-color: rgb(53, 131, 105);
+
       }
    }
 }
