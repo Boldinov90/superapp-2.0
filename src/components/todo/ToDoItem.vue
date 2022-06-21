@@ -7,11 +7,12 @@
       />
       <div class="task-item__task-title" :class="{ 'task-item__task-title-done': task.checkbox }">{{ task.taskTitle }}</div>
       <MyButton :valueBtn="'Изменить'" class="task-item__btn-change"/>
-      <MyButton :valueBtn="'Удалить'" class="task-item__btn-remove" />
+      <MyButton :valueBtn="'Удалить'" class="task-item__btn-remove" @click="deleteTask(task)"/>
    </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import MyButton from '../UI/MyButton.vue'
 export default {
    props: {
@@ -20,6 +21,20 @@ export default {
       },
    },
    components: { MyButton },
+   methods:{
+      ...mapActions(['DELETE_TASK_FROM_STATE', 'COUNT_TASKS']),
+      // Функция удаления задачи
+      deleteTask(task) {
+         // Находим и удаляем выбранную задачу
+         this.DELETE_TASK_FROM_STATE(task)
+         // // Возвращаем настройки фильтра
+         // this.tasksFilter(this.activeNav)
+         // Обновляем счетчик задач
+         this.COUNT_TASKS()
+         // // Обновляем данные на сервере
+         // this.updateDataBase()
+      },
+   }
 }
 </script>
 

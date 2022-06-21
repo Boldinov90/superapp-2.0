@@ -1,6 +1,6 @@
 <template>
    <div class="todo-filter-nav-wrapper">
-      <ul class="todo-filter-nav" v-for="taskNav in tasksNav" :key="taskNav.id">
+      <ul class="todo-filter-nav" v-for="taskNav in TASKSNAV" :key="taskNav.id">
          <li class="todo-filter-nav-item">
             {{ taskNav.value }}
             <div class="todo-filter-nav-item-count">{{ taskNav.count }}</div>
@@ -10,56 +10,22 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
    data() {
-      return {
-         tasksNav: [
-            {
-               name: 'allTasks',
-               value: 'Все задачи',
-               isActive: true,
-               count: '',
-            },
-            {
-               name: 'activeTasks',
-               value: 'Активные задачи',
-               isActive: '',
-               count: '',
-            },
-            {
-               name: 'doneTasks',
-               value: 'Завершенные',
-               isActive: '',
-               count: '',
-            },
-         ],
-      }
+      return {}
    },
    computed: {
-      ...mapGetters(['TASKS']),
+      ...mapGetters(['TASKSNAV']),
    },
    methods: {
-      countTasks() {
-         this.tasksNav.forEach((item) => {
-            let arr = this.TASKS
-            if (item.name === 'allTasks') {
-               item.count = this.TASKS.length
-            }
-            if (item.name === 'activeTasks') {
-               item.count = arr.filter((item) => item.checkbox !== true).length
-            }
-            if (item.name === 'doneTasks') {
-               item.count = arr.filter((item) => item.checkbox !== false).length
-            }
-         })
-      },
+      ...mapActions(['COUNT_TASKS']),
    },
    components: {},
-   mounted() {
-      this.countTasks()
+   beforeMount() {
+      this.COUNT_TASKS()
       window.addEventListener('load', () => {
-         this.countTasks()
+         this.COUNT_TASKS()
       })
    },
 }
@@ -86,7 +52,7 @@ export default {
             align-items: center;
             color: white;
             font-size: 12px;
-            background-color: #3273F6;
+            background-color: #3273f6;
             width: 30px;
             height: 17px;
             border-radius: 10px;
