@@ -22,17 +22,13 @@ export default {
    },
    components: { MyButton },
    methods:{
-      ...mapActions(['DELETE_TASK_FROM_STATE', 'COUNT_TASKS']),
+      ...mapActions(['DELETE_TASK', 'COUNT_TASKS']),
       // Функция удаления задачи
       deleteTask(task) {
-         // Находим и удаляем выбранную задачу
-         this.DELETE_TASK_FROM_STATE(task)
-         // // Возвращаем настройки фильтра
-         // this.tasksFilter(this.activeNav)
-         // Обновляем счетчик задач
+         // Удаление выбранной задачи
+         this.DELETE_TASK(task)
+         // Обновление счетчиков задач
          this.COUNT_TASKS()
-         // // Обновляем данные на сервере
-         // this.updateDataBase()
       },
    }
 }

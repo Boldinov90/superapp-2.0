@@ -37,7 +37,7 @@ export default createStore({
          state.tasks = response.data
       },
       // Удаление задачи
-      DELETE_TASK_FROM_STATE(state, task) {
+      DELETE_TASK(state, task) {
          state.tasks = state.tasks.filter((item) => item !== task)
       },
       // Счетчик задач
@@ -57,29 +57,36 @@ export default createStore({
       },
    },
    actions: {
+      // Переключение темной/светлой темы
       TOGGLE_IS_DARK_THEME({ commit }) {
          commit('TOGGLE_IS_DARK_THEME')
       },
+      // Получение всех задач с сервера
       async GET_ALL_TASKS({ commit }) {
          const response = await axios.get('http://localhost:3000/tasks')
          commit('GET_ALL_TASKS', response)
          return response
       },
-      async DELETE_TASK_FROM_STATE({ commit }, task) {
-         commit('DELETE_TASK_FROM_STATE', task)
+      // Удаление задачи
+      async DELETE_TASK({ commit }, task) {
+         commit('DELETE_TASK', task)
          await axios.delete(`http://localhost:3000/tasks/${task.id}`)
       },
+      // Счетчик задач
       COUNT_TASKS({ commit }) {
          commit('COUNT_TASKS')
       },
    },
    getters: {
+      // Состояние темы
       IS_DARK_THEME(state) {
          return state.isDarkTheme
       },
+      // Массив со всеми задачами
       TASKS(state) {
          return state.tasks
       },
+      // Массив с навигацией по задачам
       TASKSNAV(state) {
          return state.tasksNav
       },
