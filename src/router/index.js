@@ -18,12 +18,14 @@ const routes = [
       path: '/calculator',
       name: 'calculator',
       component: Calculator,
-   },
+   }
 ]
 
 const router = createRouter({
    history: createWebHistory(process.env.BASE_URL),
    routes,
+   linkActiveClass: 'active',
+   linkExactActiveClass: 'active',
 })
 
 export default router

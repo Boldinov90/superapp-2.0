@@ -1,9 +1,8 @@
 <template>
    <div class="wrapper">
-      <div class="todo container" :class="{ 'dark-container': IS_DARK_THEME }">
-         <h1 class="todo__title">{{ pageTitle }}</h1>
+      <div class="todo">
          <div class="todo__content content">
-            <ToDoFilterNav class="content__navigation"/>
+            <ToDoFilterNav class="content__navigation" />
             <ToDoList class="content__todo-list" />
          </div>
       </div>
@@ -18,9 +17,7 @@ import ToDoList from '../components/todo/ToDoList.vue'
 export default {
    components: { ToDoFilterNav, ToDoList },
    data() {
-      return {
-         pageTitle: 'Список задач',
-      }
+      return {}
    },
    computed: {
       ...mapGetters(['IS_DARK_THEME']),
@@ -31,21 +28,17 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
+   min-height: 100vh;
+   padding: 60px 0;
    .todo {
-      padding-top: 60px;
-
-      .todo__title {
-         @extend %pagetitle;
-      }
       .todo__content {
-         // @include flexPosition(_, center);
          display: grid;
-         grid-template-columns: 1fr 4fr;
+         grid-template-columns: 1fr;
          .content__navigation {
             margin-right: 40px;
          }
          .content__todo-list {
-            // overflow-y: scroll;
+            margin-left: 250px;
          }
       }
    }

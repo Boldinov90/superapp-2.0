@@ -23,13 +23,13 @@
             </li>
          </ul>
          <MyButton
-            class="header__btn-light"
+            class="header__btn"
             v-if="!IS_DARK_THEME"
             :valueBtn="'Темная тема'"
             @click="toggleDarkTheme"
          />
          <MyButton
-            class="header__btn-dark"
+            class="header__btn"
             v-else
             :valueBtn="'Светлая тема'"
             @click="toggleDarkTheme"
@@ -63,16 +63,23 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-   position: fixed;
-   left: 0;
-   right: 0;
-   top: 0;
    .header {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      max-width: 1100px;
       height: 60px;
+      margin: 0 auto;
+      padding: 0 20px;
       @extend %flexallcenter;
       justify-content: space-between;
       .header__logo {
          font-size: 20px;
+         &:hover {
+            color: #3273F6;
+            cursor: pointer;
+         }
       }
       .header__navigation {
          min-width: 300px;
@@ -83,14 +90,15 @@ export default {
             .nav-item {
                color: #969696;
             }
+            .active {
+               color: #3273F6;
+               border-bottom: 2px solid #3273F6;
+            }
          }
       }
-      .header__btn-light {
-         background-color: aquamarine;
-      }
-      .header__btn-dark {
-         background-color: rgb(53, 131, 105);
-
+      .header__btn {
+         background-color: #3273F6;
+         color: #f7f6f6;
       }
    }
 }

@@ -1,9 +1,13 @@
 <template>
    <div class="task-item">
-      <input class="checkbox" type="checkbox" :checked="task.checkbox" />
-      <div class="task-id">{{ task.id }}</div>
-      <div class="task-title">{{ task.taskTitle }}</div>
-      <MyButton :valueBtn="'Удалить'" class="btn" />
+      <input
+         class="task-item__checkbox"
+         type="checkbox"
+         :checked="task.checkbox"
+      />
+      <div class="task-item__task-title" :class="{ 'task-item__task-title-done': task.checkbox }">{{ task.taskTitle }}</div>
+      <MyButton :valueBtn="'Изменить'" class="task-item__btn-change"/>
+      <MyButton :valueBtn="'Удалить'" class="task-item__btn-remove" />
    </div>
 </template>
 
@@ -21,41 +25,34 @@ export default {
 
 <style lang="scss" scoped>
 .task-item {
-   // background-color: aqua;
-   // width: 100%;
-   margin-top: 17px;
-   display: grid;
-   grid-template-columns: 0.5fr 0.3fr 15fr 1fr;
-   // grid-template-rows: 1fr;
-   border: none;
-   box-shadow: 0px 0px 10px 4px rgba(34, 60, 80, 0.2);
-   border-radius: 6px;
-   // width: 400px;
-   // display: flex;
-   align-items: center;
+   margin-top: 13px;
    padding: 10px 20px;
-
-   // justify-content: space-between;
-   // justify-content: flex-end;
-   // @include flexPosition(_, center);
-   .checkbox {
+   display: grid;
+   grid-template-columns: 0.5fr 15fr 1fr 1fr;
+   border: none;
+   box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.103);
+   border-radius: 6px;
+   align-items: center;
+   .task-item__checkbox {
       margin-right: 10px;
    }
-   .task-id {
-      margin-right: 10px;
-      // justify-self: end;
-
-
-      // justify-self: flex-start;
+   .task-item__task-title-done {
+      text-decoration: line-through;
+      color: rgba(170, 170, 170, 0.459);
    }
-   .task-title {
-      // margin-right: 10px;
-
+   .task-item__btn-change {
+      background-color: #3273F6;
+      color: white;
+      margin-right: 20px;
+      &:hover {
+         background-color: #3273f6de;
+      }
+      &:active {
+         background-color: #3273F6;
+      }
    }
-   .btn {
-      // justify-self: end;
-
-      background-color: red;
+   .task-item__btn-remove {
+      background-color: rgb(217, 87, 61);
       color: white;
       &:hover {
          background-color: rgb(255, 84, 84);

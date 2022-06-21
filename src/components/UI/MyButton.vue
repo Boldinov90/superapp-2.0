@@ -21,6 +21,8 @@ export default {
 <style lang="scss" scoped>
 .btn{
    padding: 5px 10px;
+   border: none;
+   border-radius: 5px;
 }
 
 </style>
