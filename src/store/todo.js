@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default createStore({
+export default {
    state: {
       isDarkTheme: false,
       tasks: [],
@@ -90,4 +90,4 @@ export default createStore({
          return state.tasksNav
       },
    },
-})
+}

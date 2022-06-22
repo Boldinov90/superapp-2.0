@@ -20,7 +20,7 @@ export default {
       return {}
    },
    computed: {
-      ...mapGetters('todo', ['IS_DARK_THEME']),
+      ...mapGetters(['IS_DARK_THEME']),
    },
    methods: {},
 }

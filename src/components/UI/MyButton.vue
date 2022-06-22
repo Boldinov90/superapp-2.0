@@ -13,7 +13,7 @@ export default {
       },
    },
    computed: {
-      ...mapGetters('todo', ['IS_DARK_THEME']),
+      ...mapGetters(['IS_DARK_THEME']),
    },
 }
 </script>

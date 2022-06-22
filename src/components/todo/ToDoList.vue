@@ -15,7 +15,7 @@ export default {
       ToDoItem,
    },
    computed: {
-      ...mapGetters('todo', ['TASKS']),
+      ...mapGetters(['TASKS']),
    },
    methods: {},
 }

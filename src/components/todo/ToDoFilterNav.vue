@@ -16,10 +16,10 @@ export default {
       return {}
    },
    computed: {
-      ...mapGetters('todo', ['TASKSNAV']),
+      ...mapGetters(['TASKSNAV']),
    },
    methods: {
-      ...mapActions('todo', ['COUNT_TASKS']),
+      ...mapActions(['COUNT_TASKS']),
    },
    components: {},
    beforeMount() {
