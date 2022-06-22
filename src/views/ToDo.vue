@@ -1,6 +1,6 @@
 <template>
    <div class="wrapper">
-      <div class="todo">
+      <div class="todo animate__animated animate__fadeIn">
          <div class="todo__content content">
             <ToDoFilterNav class="content__navigation" />
             <ToDoList class="content__todo-list" />
@@ -13,6 +13,7 @@
 import { mapGetters } from 'vuex'
 import ToDoFilterNav from '../components/todo/ToDoFilterNav.vue'
 import ToDoList from '../components/todo/ToDoList.vue'
+import 'animate.css'
 
 export default {
    components: { ToDoFilterNav, ToDoList },

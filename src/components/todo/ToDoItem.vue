@@ -13,9 +13,9 @@
       >
          {{ task.taskTitle }}
       </div>
-      <MyButton :valueBtn="'Изменить'" class="task-item__btn-change" />
+      <MyButton :valueBtn="'&#9998;'" class="task-item__btn-edit" />
       <MyButton
-         :valueBtn="'Удалить'"
+         :valueBtn="'&otimes;'"
          class="task-item__btn-remove"
          @click="deleteTask(task)"
       />
@@ -55,11 +55,11 @@ export default {
 <style lang="scss" scoped>
 .task-item {
    margin-top: 13px;
-   padding: 10px 20px;
+   padding: 2px 10px;
    display: grid;
    grid-template-columns: 0.5fr 15fr 1fr 1fr;
    border: none;
-   box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.103);
+   box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.194);
    border-radius: 6px;
    align-items: center;
    .task-item__checkbox {
@@ -69,25 +69,35 @@ export default {
       text-decoration: line-through;
       color: rgba(170, 170, 170, 0.459);
    }
-   .task-item__btn-change {
-      background-color: #3273f6;
-      color: white;
-      margin-right: 20px;
+   .task-item__btn-edit {
+      background-color: #3273f600;
+      color: #3273f6;
+      font-size: 20px;
+      padding: 0;
+      margin-right: 15px;
+      transition: 0.1s;
       &:hover {
-         background-color: #3273f6de;
+         transform: scale(1.2);
+         transition: 0.3s;
       }
       &:active {
-         background-color: #3273f6;
+         transform: scale(1);
+         transition: 0.1s;
       }
    }
    .task-item__btn-remove {
-      background-color: rgb(217, 87, 61);
-      color: white;
+      background-color: rgba(217, 87, 61, 0);
+      color: rgb(217, 87, 61);
+      font-size: 26px;
+      padding: 0;
+      transition: 0.1s;
       &:hover {
-         background-color: rgb(255, 84, 84);
+         transform: scale(1.2);
+         transition: 0.3s;
       }
       &:active {
-         background-color: red;
+         transform: scale(1);
+         transition: 0.1s;
       }
    }
 }

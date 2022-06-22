@@ -3,22 +3,17 @@
     {
       "id": 1,
       "taskTitle": "Купить масло",
-      "checkbox": true
-    },
-    {
-      "id": 2,
-      "taskTitle": "Купить молоко",
-      "checkbox": true
+      "checkbox": false
     },
     {
       "id": 3,
       "taskTitle": "Купить мыло",
-      "checkbox": true
+      "checkbox": false
     },
     {
       "id": 4,
       "taskTitle": "Купить Хлеб",
-      "checkbox": true
+      "checkbox": false
     }
   ]
 }
