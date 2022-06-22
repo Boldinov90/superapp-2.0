@@ -1,13 +1,24 @@
 <template>
    <div class="task-item">
       <input
+         v-model="task.checkbox"
          class="task-item__checkbox"
          type="checkbox"
          :checked="task.checkbox"
+         @click="changeTaskStatus(task)"
       />
-      <div class="task-item__task-title" :class="{ 'task-item__task-title-done': task.checkbox }">{{ task.taskTitle }}</div>
-      <MyButton :valueBtn="'Изменить'" class="task-item__btn-change"/>
-      <MyButton :valueBtn="'Удалить'" class="task-item__btn-remove" @click="deleteTask(task)"/>
+      <div
+         class="task-item__task-title"
+         :class="{ 'task-item__task-title-done': task.checkbox }"
+      >
+         {{ task.taskTitle }}
+      </div>
+      <MyButton :valueBtn="'Изменить'" class="task-item__btn-change" />
+      <MyButton
+         :valueBtn="'Удалить'"
+         class="task-item__btn-remove"
+         @click="deleteTask(task)"
+      />
    </div>
 </template>
 
@@ -21,8 +32,8 @@ export default {
       },
    },
    components: { MyButton },
-   methods:{
-      ...mapActions(['DELETE_TASK', 'COUNT_TASKS']),
+   methods: {
+      ...mapActions(['DELETE_TASK', 'COUNT_TASKS', 'CHANGE_TASK_STATUS']),
       // Функция удаления задачи
       deleteTask(task) {
          // Удаление выбранной задачи
@@ -30,7 +41,14 @@ export default {
          // Обновление счетчиков задач
          this.COUNT_TASKS()
       },
-   }
+      // Функция изменения статуса задачи
+      changeTaskStatus(task) {
+         // Изменение статуса задачи
+         this.CHANGE_TASK_STATUS(task)
+         // Обновление счетчиков задач
+         this.COUNT_TASKS()
+      },
+   },
 }
 </script>
 
@@ -52,14 +70,14 @@ export default {
       color: rgba(170, 170, 170, 0.459);
    }
    .task-item__btn-change {
-      background-color: #3273F6;
+      background-color: #3273f6;
       color: white;
       margin-right: 20px;
       &:hover {
          background-color: #3273f6de;
       }
       &:active {
-         background-color: #3273F6;
+         background-color: #3273f6;
       }
    }
    .task-item__btn-remove {

@@ -54,6 +54,11 @@ export default {
             }
          })
       },
+      // Изменение статуса задачи
+      CHANGE_TASK_STATUS(state, task) {
+         state.tasks.find((item) => item.id === task.id).checkbox =
+            !task.checkbox
+      },
    },
    actions: {
       // Переключение темной/светлой темы
@@ -74,6 +79,13 @@ export default {
       // Счетчик задач
       COUNT_TASKS({ commit }) {
          commit('COUNT_TASKS')
+      },
+      // Изменение статуса задачи
+      async CHANGE_TASK_STATUS({ commit }, task) {
+         commit('CHANGE_TASK_STATUS', task)
+         await axios.patch(`http://localhost:3000/tasks/${task.id}`, {
+            checkbox: task.checkbox,
+         })
       },
    },
    getters: {
