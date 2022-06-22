@@ -6,7 +6,7 @@ npm install
 ```
 
 <!-- ### Compiles and hot-reloads for development -->
-### Запуск проекта (одновременный запуск проекта и json-server(а))
+### Запуск проекта (одновременный запуск проекта и json-server(а))   
 ```
 npm run start
 ```
