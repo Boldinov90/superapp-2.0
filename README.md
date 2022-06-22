@@ -1,12 +1,12 @@
 # test_vue
 
-## Project setup
+## Установка необходимых для работы пакетов
 ```
 npm install
 ```
 
 <!-- ### Compiles and hot-reloads for development -->
-### Для одновременного запуска проекта и json-server
+### Запуск проекта (одновременный запуск проекта и json-server(а))
 ```
 npm run start
 ```
