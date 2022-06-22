@@ -50,10 +50,10 @@ export default {
       }
    },
    computed: {
-      ...mapGetters(['IS_DARK_THEME']),
+      ...mapGetters('todo', ['IS_DARK_THEME']),
    },
    methods: {
-      ...mapActions(['TOGGLE_IS_DARK_THEME']),
+      ...mapActions('todo', ['TOGGLE_IS_DARK_THEME']),
       toggleDarkTheme() {
          this.TOGGLE_IS_DARK_THEME()
       },

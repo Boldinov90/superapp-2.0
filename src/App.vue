@@ -16,10 +16,10 @@ export default {
       Header,
    },
    computed: {
-      ...mapGetters(['IS_DARK_THEME']),
+      ...mapGetters('todo', ['IS_DARK_THEME']),
    },
    methods: {
-      ...mapActions(['GET_ALL_TASKS']),
+      ...mapActions('todo', ['GET_ALL_TASKS']),
    },
    beforeMount() {
       this.GET_ALL_TASKS()

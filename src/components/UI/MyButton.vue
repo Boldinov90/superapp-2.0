@@ -13,16 +13,15 @@ export default {
       },
    },
    computed: {
-      ...mapGetters(['IS_DARK_THEME']),
+      ...mapGetters('todo', ['IS_DARK_THEME']),
    },
 }
 </script>
 
 <style lang="scss" scoped>
-.btn{
+.btn {
    padding: 5px 10px;
    border: none;
    border-radius: 5px;
 }
-
 </style>

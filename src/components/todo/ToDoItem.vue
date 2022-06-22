@@ -22,7 +22,7 @@ export default {
    },
    components: { MyButton },
    methods:{
-      ...mapActions(['DELETE_TASK', 'COUNT_TASKS']),
+      ...mapActions('todo', ['DELETE_TASK', 'COUNT_TASKS']),
       // Функция удаления задачи
       deleteTask(task) {
          // Удаление выбранной задачи
