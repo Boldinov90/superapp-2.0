@@ -17,8 +17,18 @@
     },
     {
       "id": 4,
-      "taskTitle": "Купить мясо",
-      "checkbox": false
+      "taskTitle": "Купить мыло",
+      "checkbox": true
+    },
+    {
+      "id": 5,
+      "taskTitle": "Купить сахар",
+      "checkbox": true
+    },
+    {
+      "id": 6,
+      "taskTitle": "Купить картофель",
+      "checkbox": true
     }
   ]
 }

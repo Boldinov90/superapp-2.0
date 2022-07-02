@@ -4,26 +4,44 @@
          <div class="todo__content content">
             <ToDoFilterNav class="content__navigation" />
             <ToDoList class="content__todo-list" />
+            <MyForm :formTitle="'Новая задача'" class="content__form form">
+               <MyFormInput
+                  class="form__input"
+                  :textPlaceholder="'Введите текст новой задачи'"
+               />
+               <div class="form__btns">
+                  <MyButton :valueBtn="'Добавить'" class="btn" />
+                  <MyButton :valueBtn="'Отмена'" class="btn" />
+               </div>
+            </MyForm>
          </div>
       </div>
    </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+import 'animate.css'
 import ToDoFilterNav from '../components/todo/ToDoFilterNav.vue'
 import ToDoList from '../components/todo/ToDoList.vue'
-import 'animate.css'
+import MyForm from '../components/UI/MyForm.vue'
+import MyFormInput from '../components/UI/MyFormInput.vue'
+import MyButton from '../components/UI/MyButton.vue'
 
 export default {
-   components: { ToDoFilterNav, ToDoList },
+   components: { ToDoFilterNav, ToDoList, MyForm, MyFormInput, MyButton },
    data() {
       return {}
    },
    computed: {
-      ...mapGetters(['IS_DARK_THEME']),
+      ...mapGetters(['IS_DARK_THEME', 'IS_FORM_ADD_TASK_OPEN']),
    },
-   methods: {},
+   methods: {
+      ...mapActions(['TOGGLE_IS_FORM_ADD_TASK_OPEN']),
+      openFormAddTask() {
+         this.TOGGLE_IS_FORM_ADD_TASK_OPEN()
+      },
+   },
 }
 </script>
 
@@ -40,6 +58,18 @@ export default {
          }
          .content__todo-list {
             margin-left: 250px;
+         }
+         .content__form {
+            .form__btns {
+               margin-top: 20px;
+               @extend %flexallcenter;
+               .btn {
+                  background-color: $accent-color;
+                  color: $text-button-color;
+                  margin-right: 20px;
+                  min-width: 90px;
+               }
+            }
          }
       }
    }

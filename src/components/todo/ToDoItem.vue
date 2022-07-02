@@ -71,10 +71,9 @@ export default {
    }
    .task-item__btn-edit {
       background-color: #3273f600;
-      color: #3273f6;
+      color: $accent-color;
       font-size: 20px;
       padding: 0;
-      margin-right: 15px;
       transition: 0.1s;
       &:hover {
          transform: scale(1.2);

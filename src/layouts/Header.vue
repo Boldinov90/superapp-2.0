@@ -77,28 +77,28 @@ export default {
       .header__logo {
          font-size: 20px;
          &:hover {
-            color: #3273F6;
+            color: $accent-color;
             cursor: pointer;
          }
       }
       .header__navigation {
-         min-width: 300px;
          @extend %flexallcenter;
          justify-content: space-between;
+         column-gap: 20px;
          flex-wrap: wrap;
          .header__navigation-item {
             .nav-item {
-               color: #969696;
+               color: $text-menu-color;
             }
             .active {
-               color: #3273F6;
-               border-bottom: 2px solid #3273F6;
+               color: $accent-color;
+               border-bottom: 2px solid $accent-color;
             }
          }
       }
       .header__btn {
-         background-color: #3273F6;
-         color: #f7f6f6;
+         background-color: $accent-color;
+         color: $text-button-color;
       }
    }
 }

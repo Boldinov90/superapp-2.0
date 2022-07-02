@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export default {
    state: {
+      isFormAddTaskOpen: false,
       isDarkTheme: false,
       tasks: [],
       tasksSandBox: [],
@@ -31,6 +32,10 @@ export default {
       TOGGLE_IS_DARK_THEME(state) {
          state.isDarkTheme = !state.isDarkTheme
       },
+      // Открытие формы добавления задачи
+      TOGGLE_IS_FORM_ADD_TASK_OPEN(state) {
+         state.isFormAddTaskOpen = !state.isFormAddTaskOpen
+      },
       // Получение всех задач с сервера
       GET_ALL_TASKS(state, response) {
          state.tasks = response.data
@@ -59,11 +64,16 @@ export default {
          state.tasks.find((item) => item.id === task.id).checkbox =
             !task.checkbox
       },
+      ADD_NEW_TASK(state) {},
    },
    actions: {
       // Переключение темной/светлой темы
       TOGGLE_IS_DARK_THEME({ commit }) {
          commit('TOGGLE_IS_DARK_THEME')
+      },
+      // Открытие формы добавления задачи
+      TOGGLE_IS_FORM_ADD_TASK_OPEN({ commit }) {
+         commit('TOGGLE_IS_FORM_ADD_TASK_OPEN')
       },
       // Получение всех задач с сервера
       async GET_ALL_TASKS({ commit }) {
@@ -93,6 +103,11 @@ export default {
       IS_DARK_THEME(state) {
          return state.isDarkTheme
       },
+      // Состояние формы добавления темы
+      IS_FORM_ADD_TASK_OPEN(state) {
+         return state.isFormAddTaskOpen
+      },
+
       // Массив со всеми задачами
       TASKS(state) {
          return state.tasks

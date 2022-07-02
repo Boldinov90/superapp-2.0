@@ -9,7 +9,7 @@ export default {
 </script>
 
 <style lang="scss">
-   .title{
-      @extend %pagetitle;
-   }
+   // .title{
+   //    @extend %pagetitle;
+   // }
 </style>

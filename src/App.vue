@@ -30,11 +30,11 @@ export default {
 <style lang="scss">
 .app {
    font-family: 'Montserrat', sans-serif;
-   background-color: #e3e3e3;
-   color: #212121;
+   background-color: $background-color-overlay;
+   color: $text-light-color;
 }
 .dark{
-   background-color: #2F2F33;
+   background-color: $background-color-dark-overlay;
 
 }
 </style>

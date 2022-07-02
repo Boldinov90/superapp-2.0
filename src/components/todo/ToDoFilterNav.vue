@@ -6,6 +6,9 @@
             <div class="todo-filter-nav-item-count">{{ taskNav.count }}</div>
          </li>
       </ul>
+      <!-- <div class="sdfsdfsd">
+         sdfsdfsdfd
+      </div> -->
    </div>
 </template>
 
@@ -33,12 +36,11 @@ export default {
 
 <style lang="scss" scoped>
 .todo-filter-nav-wrapper {
-   // margin-top: 13px;
    position: fixed;
    .todo-filter-nav {
       .todo-filter-nav-item {
          width: 200px;
-         color: #969696;
+         color: $text-menu-color;
          font-size: 14px;
          font-weight: 400;
          margin-top: 10px;
@@ -56,7 +58,6 @@ export default {
             width: 30px;
             height: 17px;
             border-radius: 10px;
-            // padding: 4px;
          }
       }
    }
