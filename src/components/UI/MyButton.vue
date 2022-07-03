@@ -23,5 +23,10 @@ export default {
    padding: 5px 10px;
    border: none;
    border-radius: 5px;
+   transition: 0.2s;
+   &:hover {
+      transform: scale(1.02);
+      transition: 0.2s;
+   }
 }
 </style>

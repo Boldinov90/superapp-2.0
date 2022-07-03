@@ -36,7 +36,7 @@ export default {
 .todo-filter-nav-wrapper {
    position: fixed;
    .todo-filter-nav {
-      .todo-filter-nav-item { 
+      .todo-filter-nav-item {
          color: $text-menu-color;
          font-size: 14px;
          font-weight: 400;

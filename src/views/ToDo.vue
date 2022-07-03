@@ -7,6 +7,7 @@
                   <MyButton
                      :valueBtn="'Добавить новую задачу'"
                      class="navigation__btn"
+                     @click="openFormAddTask"
                   />
                   <MyButton
                      :valueBtn="'Удалить завершенные задачи'"
@@ -19,6 +20,7 @@
                :formTitle="'Новая задача'"
                class="content__form form"
                v-if="IS_FORM_ADD_TASK_OPEN"
+               @submit.prevent
             >
                <MyFormInput
                   class="form__input"
@@ -26,7 +28,7 @@
                />
                <div class="form__btns">
                   <MyButton :valueBtn="'Добавить'" class="btn" />
-                  <MyButton :valueBtn="'Отмена'" class="btn" />
+                  <MyButton :valueBtn="'Отмена'" class="btn" @click.prevent="openFormAddTask"/>
                </div>
             </MyForm>
          </div>
