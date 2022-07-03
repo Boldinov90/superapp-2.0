@@ -2,9 +2,24 @@
    <div class="wrapper">
       <div class="todo animate__animated animate__fadeIn">
          <div class="todo__content content">
-            <ToDoFilterNav class="content__navigation" />
+            <ToDoFilterNav class="content__navigation navigation">
+               <div class="navigation__buttons">
+                  <MyButton
+                     :valueBtn="'Добавить новую задачу'"
+                     class="navigation__btn"
+                  />
+                  <MyButton
+                     :valueBtn="'Удалить завершенные задачи'"
+                     class="navigation__btn"
+                  />
+               </div>
+            </ToDoFilterNav>
             <ToDoList class="content__todo-list" />
-            <MyForm :formTitle="'Новая задача'" class="content__form form">
+            <MyForm
+               :formTitle="'Новая задача'"
+               class="content__form form"
+               v-if="IS_FORM_ADD_TASK_OPEN"
+            >
                <MyFormInput
                   class="form__input"
                   :textPlaceholder="'Введите текст новой задачи'"
@@ -54,7 +69,18 @@ export default {
          display: grid;
          grid-template-columns: 1fr;
          .content__navigation {
-            margin-right: 40px;
+            // margin-right: 20px;
+            .navigation__buttons {
+               margin-top: 50px;
+               // padding-right: 40px;
+               display: flex;
+               flex-direction: column;
+               .navigation__btn {
+                  margin-bottom: 10px;
+                  background-color: $accent-color;
+                  color: $text-button-color;
+               }
+            }
          }
          .content__todo-list {
             margin-left: 250px;
