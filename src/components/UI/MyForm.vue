@@ -1,6 +1,6 @@
 <template>
-   <div class="form-overvay">
-      <form class="form">
+   <div class="form-overlay" :class="{ 'form-overlay-dark': IS_DARK_THEME }">
+      <form class="form" :class="{ 'form-dark': IS_DARK_THEME }">
          <div class="form__title">{{ formTitle }}</div>
          <slot />
       </form>
@@ -8,17 +8,21 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
    props: {
       formTitle: {
          type: String,
       },
    },
+   computed: {
+      ...mapGetters(['IS_DARK_THEME']),
+   },
 }
 </script>
 
 <style lang="scss" scoped>
-.form-overvay {
+.form-overlay {
    position: absolute;
    left: 0;
    right: 0;
@@ -39,5 +43,11 @@ export default {
          @extend %formtitle;
       }
    }
+   .form-dark {
+      background-color: $background-color-dark-container;
+   }
+}
+.form-overlay-dark {
+   background-color: rgba(31, 31, 31, 0.838);
 }
 </style>

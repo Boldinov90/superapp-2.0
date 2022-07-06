@@ -18,7 +18,7 @@
             <ToDoList class="content__todo-list" />
             <MyForm
                :formTitle="'Новая задача'"
-               class="content__form form"
+               class="content__form form animate__animated animate__fadeIn"
                v-if="IS_FORM_ADD_TASK_OPEN"
                @submit.prevent
             >
@@ -71,10 +71,8 @@ export default {
          display: grid;
          grid-template-columns: 1fr;
          .content__navigation {
-            // margin-right: 20px;
             .navigation__buttons {
                margin-top: 50px;
-               // padding-right: 40px;
                display: flex;
                flex-direction: column;
                .navigation__btn {
@@ -88,6 +86,7 @@ export default {
             margin-left: 250px;
          }
          .content__form {
+            animation-duration: 0.2s;
             .form__btns {
                margin-top: 20px;
                @extend %flexallcenter;

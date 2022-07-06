@@ -1,34 +1,24 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "taskTitle": "Купить масло",
-      "checkbox": true
-    },
-    {
-      "id": 2,
-      "taskTitle": "Купить Хлеб",
-      "checkbox": true
-    },
-    {
       "id": 3,
       "taskTitle": "Купить молоко",
-      "checkbox": true
+      "checkbox": false
     },
     {
       "id": 4,
       "taskTitle": "Купить мыло",
-      "checkbox": true
+      "checkbox": false
     },
     {
       "id": 5,
       "taskTitle": "Купить сахар",
-      "checkbox": true
+      "checkbox": false
     },
     {
       "id": 6,
       "taskTitle": "Купить картофель",
-      "checkbox": true
+      "checkbox": false
     }
   ]
 }
