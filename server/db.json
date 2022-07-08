@@ -14,11 +14,6 @@
       "id": 5,
       "taskTitle": "Купить сахар",
       "checkbox": false
-    },
-    {
-      "id": 6,
-      "taskTitle": "Купить картофель",
-      "checkbox": false
     }
   ]
 }

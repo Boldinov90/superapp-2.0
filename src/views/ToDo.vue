@@ -25,10 +25,16 @@
                <MyFormInput
                   class="form__input"
                   :textPlaceholder="'Введите текст новой задачи'"
+                  v-model="newTask.taskTitle"
                />
+               <div>{{ newTask.taskTitle }}</div>
                <div class="form__btns">
                   <MyButton :valueBtn="'Добавить'" class="btn" />
-                  <MyButton :valueBtn="'Отмена'" class="btn" @click.prevent="openFormAddTask"/>
+                  <MyButton
+                     :valueBtn="'Отмена'"
+                     class="btn"
+                     @click.prevent="openFormAddTask"
+                  />
                </div>
             </MyForm>
          </div>
@@ -48,7 +54,12 @@ import MyButton from '../components/UI/MyButton.vue'
 export default {
    components: { ToDoFilterNav, ToDoList, MyForm, MyFormInput, MyButton },
    data() {
-      return {}
+      return {
+         newTask: {
+            taskTitle: '',
+            checkbox: false,
+         },
+      }
    },
    computed: {
       ...mapGetters(['IS_DARK_THEME', 'IS_FORM_ADD_TASK_OPEN']),
