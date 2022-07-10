@@ -25,11 +25,14 @@
                <MyFormInput
                   class="form__input"
                   :textPlaceholder="'Введите текст новой задачи'"
-                  v-model="newTask.taskTitle"
+                  v-model="newTaskTitle"
                />
-               <div>{{ newTask.taskTitle }}</div>
                <div class="form__btns">
-                  <MyButton :valueBtn="'Добавить'" class="btn" />
+                  <MyButton
+                     :valueBtn="'Добавить'"
+                     class="btn"
+                     @click.prevent="addNewTask"
+                  />
                   <MyButton
                      :valueBtn="'Отмена'"
                      class="btn"
@@ -55,18 +58,24 @@ export default {
    components: { ToDoFilterNav, ToDoList, MyForm, MyFormInput, MyButton },
    data() {
       return {
-         newTask: {
-            taskTitle: '',
-            checkbox: false,
-         },
+         newTaskTitle: '',
       }
    },
    computed: {
       ...mapGetters(['IS_DARK_THEME', 'IS_FORM_ADD_TASK_OPEN']),
    },
    methods: {
-      ...mapActions(['TOGGLE_IS_FORM_ADD_TASK_OPEN']),
+      ...mapActions(['TOGGLE_IS_FORM_ADD_TASK_OPEN', 'ADD_NEW_TASK']),
       openFormAddTask() {
+         this.TOGGLE_IS_FORM_ADD_TASK_OPEN()
+      },
+      addNewTask() {
+         let newTask = {
+            id: new Date().valueOf(),
+            taskTitle: this.newTaskTitle,
+            checkbox: false,
+         }
+         this.ADD_NEW_TASK(newTask)
          this.TOGGLE_IS_FORM_ADD_TASK_OPEN()
       },
    },

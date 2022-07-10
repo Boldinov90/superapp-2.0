@@ -64,7 +64,10 @@ export default {
          state.tasks.find((item) => item.id === task.id).checkbox =
             !task.checkbox
       },
-      ADD_NEW_TASK(state) {},
+      // Добавление новой задачи
+      ADD_NEW_TASK(state, newTask) {
+         state.tasks.unshift(newTask)
+      },
    },
    actions: {
       // Переключение темной/светлой темы
@@ -96,6 +99,11 @@ export default {
          await axios.patch(`http://localhost:3000/tasks/${task.id}`, {
             checkbox: task.checkbox,
          })
+      },
+      // Добавление новой задачи
+      async ADD_NEW_TASK({ commit }, newTask) {
+         commit('ADD_NEW_TASK', newTask)
+         await axios.post('http://localhost:3000/tasks', newTask)
       },
    },
    getters: {

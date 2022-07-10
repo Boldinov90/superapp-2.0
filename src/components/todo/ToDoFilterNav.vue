@@ -1,7 +1,10 @@
 <template>
    <div class="todo-filter-nav-wrapper">
       <ul class="todo-filter-nav" v-for="taskNav in TASKSNAV" :key="taskNav.id">
-         <li class="todo-filter-nav-item">
+         <li
+            class="todo-filter-nav-item"
+            :class="{ 'nav-active': taskNav.isActive }"
+         >
             {{ taskNav.value }}
             <div class="todo-filter-nav-item-count">{{ taskNav.count }}</div>
          </li>
@@ -21,6 +24,7 @@ export default {
    },
    methods: {
       ...mapActions(['COUNT_TASKS']),
+
    },
    components: {},
    beforeMount() {
@@ -56,6 +60,10 @@ export default {
             height: 17px;
             border-radius: 10px;
          }
+      }
+      .nav-active {
+         color: $accent-color;
+         font-weight: 600;
       }
    }
 }
