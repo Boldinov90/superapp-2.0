@@ -2,8 +2,9 @@ import axios from 'axios'
 
 export default {
    state: {
-      isFormAddTaskOpen: false,
+      isFormChangeTaskOpen: false,
       isDarkTheme: false,
+      activeTask: {},
       tasks: [],
       tasksSandBox: [],
       tasksNav: [
@@ -33,12 +34,16 @@ export default {
          state.isDarkTheme = !state.isDarkTheme
       },
       // Открытие формы добавления задачи
-      TOGGLE_IS_FORM_ADD_TASK_OPEN(state) {
-         state.isFormAddTaskOpen = !state.isFormAddTaskOpen
+      TOGGLE_IS_FORM_CHANGE_TASK_OPEN(state) {
+         state.isFormChangeTaskOpen = !state.isFormChangeTaskOpen
       },
       // Получение всех задач с сервера
       GET_ALL_TASKS(state, response) {
          state.tasks = response.data
+      },
+      // Получение активной задачи
+      GET_ACTIVE_TASK(state, task) {
+         state.activeTask = task
       },
       // Удаление задачи
       DELETE_TASK(state, task) {
@@ -75,14 +80,18 @@ export default {
          commit('TOGGLE_IS_DARK_THEME')
       },
       // Открытие формы добавления задачи
-      TOGGLE_IS_FORM_ADD_TASK_OPEN({ commit }) {
-         commit('TOGGLE_IS_FORM_ADD_TASK_OPEN')
+      TOGGLE_IS_FORM_CHANGE_TASK_OPEN({ commit }) {
+         commit('TOGGLE_IS_FORM_CHANGE_TASK_OPEN')
       },
       // Получение всех задач с сервера
       async GET_ALL_TASKS({ commit }) {
          const response = await axios.get('http://localhost:3000/tasks')
          commit('GET_ALL_TASKS', response)
          return response
+      },
+      // Получение активной задачи
+      GET_ACTIVE_TASK({ commit }, task) {
+         commit('GET_ACTIVE_TASK', task)
       },
       // Удаление задачи
       async DELETE_TASK({ commit }, task) {
@@ -112,8 +121,8 @@ export default {
          return state.isDarkTheme
       },
       // Состояние формы добавления темы
-      IS_FORM_ADD_TASK_OPEN(state) {
-         return state.isFormAddTaskOpen
+      IS_FORM_CHANGE_TASK_OPEN(state) {
+         return state.isFormChangeTaskOpen
       },
 
       // Массив со всеми задачами
@@ -124,5 +133,8 @@ export default {
       TASKSNAV(state) {
          return state.tasksNav
       },
+      ACTIVE_TASK(state){
+         return state.activeTask
+      }
    },
 }

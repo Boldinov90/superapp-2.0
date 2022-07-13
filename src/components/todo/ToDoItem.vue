@@ -13,7 +13,11 @@
       >
          {{ task.taskTitle }}
       </div>
-      <MyButton :valueBtn="'&#9998;'" class="task-item__btn-edit" />
+      <MyButton
+         :valueBtn="'&#9998;'"
+         class="task-item__btn-edit"
+         @click="openFormChangeTask(task)"
+      />
       <MyButton
          :valueBtn="'&otimes;'"
          class="task-item__btn-remove"
@@ -33,7 +37,13 @@ export default {
    },
    components: { MyButton },
    methods: {
-      ...mapActions(['DELETE_TASK', 'COUNT_TASKS', 'CHANGE_TASK_STATUS']),
+      ...mapActions([
+         'DELETE_TASK',
+         'COUNT_TASKS',
+         'CHANGE_TASK_STATUS',
+         'TOGGLE_IS_FORM_CHANGE_TASK_OPEN',
+         'GET_ACTIVE_TASK'
+      ]),
       // Функция удаления задачи
       deleteTask(task) {
          // Удаление выбранной задачи
@@ -47,6 +57,10 @@ export default {
          this.CHANGE_TASK_STATUS(task)
          // Обновление счетчиков задач
          this.COUNT_TASKS()
+      },
+      openFormChangeTask(task) {
+         this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
+         this.GET_ACTIVE_TASK(task)
       },
    },
 }

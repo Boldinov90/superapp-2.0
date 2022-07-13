@@ -74,6 +74,7 @@ export default {
       padding: 0 20px;
       @extend %flexallcenter;
       justify-content: space-between;
+      z-index: 9;
       .header__logo {
          font-size: 20px;
          &:hover {

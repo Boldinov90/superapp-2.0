@@ -1,7 +1,6 @@
 <template>
    <div class="input-group">
-      <label for="input">{{ textLabel }}</label>
-      <input
+      <textarea
          id="input"
          type="text"
          :placeholder="textPlaceholder"
@@ -14,9 +13,6 @@
 <script>
 export default {
    props: {
-      textLabel: {
-         type: String,
-      },
       textPlaceholder: {
          type: String,
       },
@@ -29,16 +25,13 @@ export default {
 
 <style lang="scss" scoped>
 .input-group {
-   display: flex;
-   flex-direction: column;
-   label {
-      margin-bottom: 7px;
-   }
-   input {
+   textarea {
+      width: 100%;
       padding: 10px 10px;
       font-size: 14px;
       border: 1px solid rgba(157, 157, 157, 0.301);
       border-radius: 4px;
+      resize: none;
    }
 }
 </style>
