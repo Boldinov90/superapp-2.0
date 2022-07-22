@@ -93,6 +93,7 @@ export default {
       ]),
       // Закрытие формы изменения текста задачи
       closeFormChangeTask() {
+         // Переключение статуса формы редактирования во VueX
          this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
       },
       // Добавление новой задачи
