@@ -113,7 +113,7 @@ export default {
          this.newTaskTitle = ''
       },
       updateTextTask() {
-         console.log(this.ACTIVE_TASK)
+         // console.log(this.ACTIVE_TASK)
          // ksjnfksjdfbndskjb
       },
       taskTitleFromItem(taskTitleFromItem) {
