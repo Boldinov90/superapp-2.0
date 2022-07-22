@@ -27,22 +27,27 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import MyButton from '../UI/MyButton.vue'
+import MyForm from '../UI/MyForm.vue'
+import MyFormInput from '../UI/MyFormInput.vue'
+
 export default {
    props: {
-      task: {
-         type: Object,
-      },
+      task:  Object,
+      // changeTaskTitle: String
    },
-   components: { MyButton },
+   components: { MyButton, MyForm, MyFormInput },
+   computed: {
+      ...mapGetters(['IS_FORM_CHANGE_TASK_OPEN']),
+   },
    methods: {
       ...mapActions([
          'DELETE_TASK',
          'COUNT_TASKS',
          'CHANGE_TASK_STATUS',
          'TOGGLE_IS_FORM_CHANGE_TASK_OPEN',
-         'GET_ACTIVE_TASK'
+         'GET_ACTIVE_TASK',
       ]),
       // Функция удаления задачи
       deleteTask(task) {
@@ -60,7 +65,16 @@ export default {
       },
       openFormChangeTask(task) {
          this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
-         this.GET_ACTIVE_TASK(task)
+         // this.GET_ACTIVE_TASK(task)
+         this.$emit('taskTitleFromItem', task.taskTitle)
+         // this.changeTaskTitle
+         // console.log(task.taskTitle)
+      },
+      closeFormChangeTask() {
+         this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
+      },
+      updateTextTask() {
+
       },
    },
 }

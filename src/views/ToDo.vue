@@ -20,7 +20,7 @@
                   />
                </div>
             </ToDoFilterNav>
-            <ToDoList class="content__todo-list" />
+            <ToDoList class="content__todo-list"  @taskTitleFromItem="taskTitleFromItem"/>
             <MyForm
                :formTitle="'Редактирование'"
                class="content__form-change-task form-change-task animate__animated animate__fadeIn"
@@ -30,7 +30,7 @@
                <MyFormInput
                   class="form__input"
                   :textPlaceholder="'Введите текст задачи'"
-                  v-model="ACTIVE_TASK.taskTitle"
+                  v-model="changeTaskTitle"
                />
                <div class="form__btns">
                   <MyButton
@@ -55,6 +55,7 @@ import { mapActions, mapGetters } from 'vuex'
 import 'animate.css'
 import ToDoFilterNav from '../components/todo/ToDoFilterNav.vue'
 import ToDoList from '../components/todo/ToDoList.vue'
+import ToDoItem from '../components/todo/ToDoItem.vue'
 import MyForm from '../components/UI/MyForm.vue'
 import MyFormInput from '../components/UI/MyFormInput.vue'
 import MyButton from '../components/UI/MyButton.vue'
@@ -64,6 +65,7 @@ export default {
    components: {
       ToDoFilterNav,
       ToDoList,
+      ToDoItem,
       MyForm,
       MyFormInput,
       MyButton,
@@ -72,18 +74,28 @@ export default {
    data() {
       return {
          newTaskTitle: '',
-         changeTaskTitle: ''
+         changeTaskTitle: '',
       }
    },
    computed: {
-      ...mapGetters(['IS_DARK_THEME', 'IS_FORM_CHANGE_TASK_OPEN', 'ACTIVE_TASK']),
+      ...mapGetters([
+         'IS_DARK_THEME',
+         'IS_FORM_CHANGE_TASK_OPEN',
+         'ACTIVE_TASK',
+         'TASKS'
+      ]),
    },
    methods: {
-      ...mapActions([ 'ADD_NEW_TASK', 'TOGGLE_IS_FORM_CHANGE_TASK_OPEN', 'COUNT_TASKS']),
+      ...mapActions([
+         'ADD_NEW_TASK',
+         'TOGGLE_IS_FORM_CHANGE_TASK_OPEN',
+         'COUNT_TASKS',
+      ]),
+      // Закрытие формы изменения текста задачи
       closeFormChangeTask() {
          this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
-         // this.changeTaskTitle = this.ACTIVE_TASK.taskTitle
       },
+      // Добавление новой задачи
       addNewTask() {
          let newTask = {
             id: new Date().valueOf(),
@@ -93,16 +105,16 @@ export default {
          this.ADD_NEW_TASK(newTask)
          // Обновление счетчиков задач
          this.COUNT_TASKS()
+         // Очистка инпута
          this.newTaskTitle = ''
       },
-      updateTextTask(){
+      updateTextTask() {
          console.log(this.ACTIVE_TASK)
-         // this.changeTaskTitle = this.ACTIVE_TASK.taskTitle
+      },
+      taskTitleFromItem(taskTitleFromItem){
+         this.changeTaskTitle = taskTitleFromItem
       }
    },
-   // watch: {
-   //    $store.state.ACTIVE_TASK.taskTitle
-   // }
 }
 </script>
 
@@ -114,9 +126,10 @@ export default {
       .todo__content {
          display: grid;
          grid-template-columns: 1fr;
+         
          .content__navigation {
             .navigation__buttons {
-               .navigation__text-area{
+               .navigation__text-area {
                   margin-bottom: 10px;
                }
                margin-top: 50px;
@@ -129,32 +142,8 @@ export default {
                }
             }
          }
-         // .content__add-new-tasks {
-         //    // width: 100%;
-         //    // margin: 0;
-
-         //    display: grid;
-         //    grid-template-columns: 5fr 1fr;
-         //    align-items: center;
-         //    // justify-content: space-between;
-         //    margin-left: 230px;
-         //    position: fixed;
-         //    // left: 250px;
-         //    // right: 0;
-         //    background-color: $background-color-container;
-         //    .add-new-tasks__input{
-         //       padding: 7px 20px;
-         //    }
-         //    .add-new-tasks__btn{
-         //       // height: 100%;
-         //       background-color: $accent-color;
-         //       color: $text-button-color;
-         //       margin-left: 20px;
-         //    }
-         // }
          .content__todo-list {
             margin-left: 250px;
-            // margin-top: 60px;
          }
          .content__form-change-task {
             animation-duration: 0.2s;

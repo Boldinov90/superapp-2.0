@@ -32,6 +32,7 @@ export default {
    font-family: 'Montserrat', sans-serif;
    background-color: $background-color-overlay;
    color: $text-light-color;
+   // position: relative;
 }
 .dark{
    background-color: $background-color-dark-overlay;
