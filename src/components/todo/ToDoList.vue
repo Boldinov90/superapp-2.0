@@ -16,13 +16,7 @@ import ToDoItem from './ToDoItem.vue'
 
 export default {
    props: {
-      // changeTaskTitle: String
    },
-   // {
-   //    changeTaskTitle: {
-   //       type: String
-   //    }
-   // },
    components: {
       ToDoItem,
    },

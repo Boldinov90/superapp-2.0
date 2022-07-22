@@ -47,7 +47,7 @@ export default {
          'COUNT_TASKS',
          'CHANGE_TASK_STATUS',
          'TOGGLE_IS_FORM_CHANGE_TASK_OPEN',
-         'GET_ACTIVE_TASK',
+         // 'GET_ACTIVE_TASK',
       ]),
       // Функция удаления задачи
       deleteTask(task) {
