@@ -20,7 +20,10 @@
                   />
                </div>
             </ToDoFilterNav>
-            <ToDoList class="content__todo-list"  @taskTitleFromItem="taskTitleFromItem"/>
+            <ToDoList
+               class="content__todo-list"
+               @taskTitleFromItem="taskTitleFromItem"
+            />
             <MyForm
                :formTitle="'Редактирование'"
                class="content__form-change-task form-change-task animate__animated animate__fadeIn"
@@ -82,7 +85,7 @@ export default {
          'IS_DARK_THEME',
          'IS_FORM_CHANGE_TASK_OPEN',
          'ACTIVE_TASK',
-         'TASKS'
+         'TASKS',
       ]),
    },
    methods: {
@@ -110,11 +113,12 @@ export default {
          this.newTaskTitle = ''
       },
       updateTextTask() {
-         console.log(this.ACTIVE_TASK)
+         // console.log(this.ACTIVE_TASK)
+         // ksjnfksjdfbndskjb
       },
-      taskTitleFromItem(taskTitleFromItem){
+      taskTitleFromItem(taskTitleFromItem) {
          this.changeTaskTitle = taskTitleFromItem
-      }
+      },
    },
 }
 </script>
@@ -127,7 +131,7 @@ export default {
       .todo__content {
          display: grid;
          grid-template-columns: 1fr;
-         
+
          .content__navigation {
             .navigation__buttons {
                .navigation__text-area {
