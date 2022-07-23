@@ -8,23 +8,23 @@ export default {
         tasks: [],
         tasksSandBox: [],
         tasksNav: [{
-                name: 'allTasks',
-                value: 'Все задачи',
-                isActive: true,
-                count: '',
-            },
-            {
-                name: 'activeTasks',
-                value: 'Активные задачи',
-                isActive: '',
-                count: '',
-            },
-            {
-                name: 'doneTasks',
-                value: 'Завершенные',
-                isActive: '',
-                count: '',
-            },
+            name: 'allTasks',
+            value: 'Все задачи',
+            isActive: true,
+            count: '',
+        },
+        {
+            name: 'activeTasks',
+            value: 'Активные задачи',
+            isActive: '',
+            count: '',
+        },
+        {
+            name: 'doneTasks',
+            value: 'Завершенные',
+            isActive: '',
+            count: '',
+        },
         ],
     },
     mutations: {
@@ -111,7 +111,7 @@ export default {
                 checkbox: task.checkbox,
             })
         },
-        // Изменение статуса задачи
+        // Изменение те задачи
         async CHANGE_TASK_TEXT({ commit }, task) {
             commit('CHANGE_TASK_TEXT', task)
             await axios.patch(`http://localhost:3000/tasks/${task.id}`, {

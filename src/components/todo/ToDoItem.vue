@@ -66,15 +66,12 @@ export default {
       openFormChangeTask(task) {
          this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
          // this.GET_ACTIVE_TASK(task)
-         this.$emit('taskTitleFromItem', task.taskTitle)
+         this.$emit('taskFromItem', task)
          // this.changeTaskTitle
          // console.log(task.taskTitle)
       },
       closeFormChangeTask() {
          this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
-      },
-      updateTextTask() {
-
       },
    },
 }

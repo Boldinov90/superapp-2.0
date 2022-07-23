@@ -20,10 +20,7 @@
                   />
                </div>
             </ToDoFilterNav>
-            <ToDoList
-               class="content__todo-list"
-               @taskTitleFromItem="taskTitleFromItem"
-            />
+            <ToDoList class="content__todo-list" @taskFromItem="taskFromItem" />
             <MyForm
                :formTitle="'Редактирование'"
                class="content__form-change-task form-change-task animate__animated animate__fadeIn"
@@ -39,7 +36,7 @@
                   <MyButton
                      :valueBtn="'Обновить'"
                      class="btn"
-                     @click.prevent="updateTextTask"
+                     @click.prevent="updateTextTask(activeTask)"
                   />
                   <MyButton
                      :valueBtn="'Отмена'"
@@ -78,6 +75,7 @@ export default {
       return {
          newTaskTitle: '',
          changeTaskTitle: '',
+         activeTask: {},
       }
    },
    computed: {
@@ -93,6 +91,7 @@ export default {
          'ADD_NEW_TASK',
          'TOGGLE_IS_FORM_CHANGE_TASK_OPEN',
          'COUNT_TASKS',
+         'CHANGE_TASK_TEXT',
       ]),
       // Закрытие формы изменения текста задачи
       closeFormChangeTask() {
@@ -101,23 +100,34 @@ export default {
       },
       // Добавление новой задачи
       addNewTask() {
+         // Генерация нового объекта с задачей
          let newTask = {
             id: new Date().valueOf(),
             taskTitle: this.newTaskTitle,
             checkbox: false,
          }
+         // Добавление новой задачи во vuex и на сервере
          this.ADD_NEW_TASK(newTask)
          // Обновление счетчиков задач
          this.COUNT_TASKS()
          // Очистка инпута
          this.newTaskTitle = ''
       },
-      updateTextTask() {
-         // console.log(this.ACTIVE_TASK)
-         // ksjnfksjdfbndskjb
+      // Обновление текста задачи
+      updateTextTask(activeTask) {
+         // Присвоение обновленного содержимого текста задачи
+         this.activeTask.taskTitle = this.changeTaskTitle
+         // Обновление текста задачи во vuex и на сервере
+         this.CHANGE_TASK_TEXT(activeTask)
+         // Переключение статуса формы редактирования во VueX
+         this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
       },
-      taskTitleFromItem(taskTitleFromItem) {
-         this.changeTaskTitle = taskTitleFromItem
+      // Получение активной задачи из дочернего компонента (ToDoItem) через $emit
+      taskFromItem(taskFromItem) {
+         // Отображение текста задачи с сервера в инпуте
+         this.changeTaskTitle = taskFromItem.taskTitle
+         // Запись в переменную активной задачи
+         this.activeTask = taskFromItem
       },
    },
 }
@@ -131,15 +141,14 @@ export default {
       .todo__content {
          display: grid;
          grid-template-columns: 1fr;
-
          .content__navigation {
             .navigation__buttons {
-               .navigation__text-area {
-                  margin-bottom: 10px;
-               }
                margin-top: 50px;
                display: flex;
                flex-direction: column;
+               .navigation__text-area {
+                  margin-bottom: 10px;
+               }
                .navigation__btn {
                   margin-bottom: 10px;
                   background-color: $accent-color;

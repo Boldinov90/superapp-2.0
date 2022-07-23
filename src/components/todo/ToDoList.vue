@@ -1,7 +1,7 @@
 <template>
    <div v-if="TASKS.length !== 0">
       <div class="todo-list" v-for="task in TASKS" :key="task.id">
-         <ToDoItem :task="task" @taskTitleFromItem="taskTitleFromItem"/>
+         <ToDoItem :task="task" @taskFromItem="taskFromItem" />
       </div>
       <!-- <slot></slot> -->
    </div>
@@ -24,8 +24,8 @@ export default {
       ...mapGetters(['TASKS']),
    },
    methods: {
-      taskTitleFromItem(taskTitleFromItem){
-         this.$emit('taskTitleFromItem', taskTitleFromItem)
+      taskFromItem(taskFromItem){
+         this.$emit('taskFromItem', taskFromItem)
       },
    },
 }

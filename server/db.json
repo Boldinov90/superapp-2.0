@@ -2,27 +2,27 @@
   "tasks": [
     {
       "id": 1657746237509,
-      "taskTitle": "1",
+      "taskTitle": "Купить сметану",
       "checkbox": false
     },
     {
       "id": 1657746239364,
-      "taskTitle": "2",
+      "taskTitle": "Покормить кошку-хуешку",
       "checkbox": false
     },
     {
       "id": 1658081167838,
-      "taskTitle": "3\n",
+      "taskTitle": "Вынести мусор на помойку",
       "checkbox": false
     },
     {
       "id": 1658086411404,
-      "taskTitle": "sdsdc\n",
+      "taskTitle": "Купить мыло",
       "checkbox": false
     },
     {
       "id": 1658326975158,
-      "taskTitle": "New Task",
+      "taskTitle": "Помыть посуду",
       "checkbox": false
     }
   ]
