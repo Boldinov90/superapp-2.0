@@ -29,7 +29,6 @@ export default {
    top: 0;
    bottom: 0;
    background-color: rgba(255, 255, 255, 0.712);
-   // background-color: rgba(109, 23, 23, 0.712);
    display: grid;
    align-items: center;
    justify-content: center;

@@ -1,28 +1,18 @@
 {
   "tasks": [
     {
-      "id": 1657746237509,
-      "taskTitle": "Купить сметану",
-      "checkbox": false
-    },
-    {
-      "id": 1657746239364,
-      "taskTitle": "Покормить кошку-хуешку",
-      "checkbox": false
-    },
-    {
-      "id": 1658081167838,
-      "taskTitle": "Вынести мусор на помойку",
-      "checkbox": false
-    },
-    {
-      "id": 1658086411404,
-      "taskTitle": "Купить мыло",
-      "checkbox": false
-    },
-    {
-      "id": 1658326975158,
+      "id": 1658692936436,
       "taskTitle": "Помыть посуду",
+      "checkbox": false
+    },
+    {
+      "id": 1658693094726,
+      "taskTitle": "Вынести мусор\n",
+      "checkbox": false
+    },
+    {
+      "id": 1658693109860,
+      "taskTitle": "Купить масло\n",
       "checkbox": false
     }
   ]

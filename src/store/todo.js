@@ -3,6 +3,8 @@ import axios from 'axios'
 export default {
     state: {
         isFormChangeTaskOpen: false,
+        isAlertOpen: false,
+        textAlert: '',
         isDarkTheme: false,
         activeTask: {},
         tasks: [],
@@ -35,6 +37,11 @@ export default {
         // Открытие формы добавления задачи
         TOGGLE_IS_FORM_CHANGE_TASK_OPEN(state) {
             state.isFormChangeTaskOpen = !state.isFormChangeTaskOpen
+        },
+        // Открытие/закрытие alert
+        TOGGLE_IS_ALERT_OPEN(state, textAlert) {
+            state.isAlertOpen = !state.isAlertOpen
+            state.textAlert = textAlert
         },
         // Получение всех задач с сервера
         GET_ALL_TASKS(state, response) {
@@ -84,6 +91,10 @@ export default {
         // Открытие формы добавления задачи
         TOGGLE_IS_FORM_CHANGE_TASK_OPEN({ commit }) {
             commit('TOGGLE_IS_FORM_CHANGE_TASK_OPEN')
+        },
+        // Открытие/закрытие alert
+        TOGGLE_IS_ALERT_OPEN({ commit }, textAlert) {
+            commit('TOGGLE_IS_ALERT_OPEN', textAlert)
         },
         // Получение всех задач с сервера
         async GET_ALL_TASKS({ commit }) {
@@ -144,6 +155,9 @@ export default {
         },
         ACTIVE_TASK(state) {
             return state.activeTask
+        },
+        TEXT_ALERT(state){
+            return state.textAlert
         }
     },
 }

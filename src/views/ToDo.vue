@@ -8,6 +8,7 @@
                      class="navigation__text-area"
                      :textPlaceholder="'Введите текст новой задачи'"
                      v-model="newTaskTitle"
+                     @keyup.enter="addNewTask"
                   />
                   <MyButton
                      :valueBtn="'Добавить новую задачу'"
@@ -41,10 +42,14 @@
                   <MyButton
                      :valueBtn="'Отмена'"
                      class="btn"
-                     @click.prevent="closeFormChangeTask"
+                     @click.prevent="closeFormChangeTask()"
                   />
                </div>
             </MyForm>
+            <MyAlert
+               class="animate__animated animate__fadeIn"
+               v-if="TEXT_ALERT"
+            />
          </div>
       </div>
    </div>
@@ -60,6 +65,7 @@ import MyForm from '../components/UI/MyForm.vue'
 import MyFormInput from '../components/UI/MyFormInput.vue'
 import MyButton from '../components/UI/MyButton.vue'
 import MyTextArea from '../components/UI/MyTextArea.vue'
+import MyAlert from '../components/UI/MyAlert.vue'
 
 export default {
    components: {
@@ -70,12 +76,14 @@ export default {
       MyFormInput,
       MyButton,
       MyTextArea,
+      MyAlert,
    },
    data() {
       return {
          newTaskTitle: '',
          changeTaskTitle: '',
          activeTask: {},
+         alertTitle: '',
       }
    },
    computed: {
@@ -84,6 +92,7 @@ export default {
          'IS_FORM_CHANGE_TASK_OPEN',
          'ACTIVE_TASK',
          'TASKS',
+         'TEXT_ALERT',
       ]),
    },
    methods: {
@@ -92,35 +101,55 @@ export default {
          'TOGGLE_IS_FORM_CHANGE_TASK_OPEN',
          'COUNT_TASKS',
          'CHANGE_TASK_TEXT',
+         'TOGGLE_IS_ALERT_OPEN',
       ]),
       // Закрытие формы изменения текста задачи
       closeFormChangeTask() {
          // Переключение статуса формы редактирования во VueX
          this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
+         // this.changeTaskTitle = activeTask.taskTitle
       },
       // Добавление новой задачи
       addNewTask() {
-         // Генерация нового объекта с задачей
-         let newTask = {
-            id: new Date().valueOf(),
-            taskTitle: this.newTaskTitle,
-            checkbox: false,
+         if (this.newTaskTitle) {
+            // Генерация нового объекта с задачей
+            let newTask = {
+               id: new Date().valueOf(),
+               taskTitle: this.newTaskTitle,
+               checkbox: false,
+            }
+            // Добавление новой задачи во vuex и на сервере
+            this.ADD_NEW_TASK(newTask)
+            // Обновление счетчиков задач
+            this.COUNT_TASKS()
+            // Очистка инпута
+            this.newTaskTitle = ''
+         } else {
+            this.TOGGLE_IS_ALERT_OPEN(
+               'Задача не может быть пустой! Введите текст новой задачи.',
+            )
+            setTimeout(() => {
+               this.TOGGLE_IS_ALERT_OPEN()
+            }, 2000)
          }
-         // Добавление новой задачи во vuex и на сервере
-         this.ADD_NEW_TASK(newTask)
-         // Обновление счетчиков задач
-         this.COUNT_TASKS()
-         // Очистка инпута
-         this.newTaskTitle = ''
       },
       // Обновление текста задачи
       updateTextTask(activeTask) {
-         // Присвоение обновленного содержимого текста задачи
-         this.activeTask.taskTitle = this.changeTaskTitle
-         // Обновление текста задачи во vuex и на сервере
-         this.CHANGE_TASK_TEXT(activeTask)
-         // Переключение статуса формы редактирования во VueX
-         this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
+         if (this.changeTaskTitle) {
+            // Присвоение обновленного содержимого инпута редактируемой задачи
+            activeTask.taskTitle = this.changeTaskTitle
+            // Обновление текста задачи во vuex и на сервере
+            this.CHANGE_TASK_TEXT(activeTask)
+            // Переключение статуса формы редактирования во VueX
+            this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
+         } else {
+            this.TOGGLE_IS_ALERT_OPEN(
+               'Задача не может быть пустой! Введите текст задачи.',
+            )
+            setTimeout(() => {
+               this.TOGGLE_IS_ALERT_OPEN()
+            }, 2000)
+         }
       },
       // Получение активной задачи из дочернего компонента (ToDoItem) через $emit
       taskFromItem(taskFromItem) {
