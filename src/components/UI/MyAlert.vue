@@ -40,9 +40,6 @@ export default {
          background-color: $background-color-container;
          box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.194);
          border-left: 14px solid red;
-      .alert__title {
-         
-      }
    }
    .alert__body-dark {
       background-color: $background-color-dark-container;
