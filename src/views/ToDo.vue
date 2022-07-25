@@ -19,6 +19,10 @@
                      :valueBtn="'Удалить завершенные задачи'"
                      class="navigation__btn"
                   />
+                  <MyButton
+                     :valueBtn="'Завершить все задачи'"
+                     class="navigation__btn"
+                  />
                </div>
             </ToDoFilterNav>
             <ToDoList class="content__todo-list" @taskFromItem="taskFromItem" />

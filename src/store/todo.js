@@ -122,7 +122,7 @@ export default {
                 checkbox: task.checkbox,
             })
         },
-        // Изменение те задачи
+        // Изменение текста задачи
         async CHANGE_TASK_TEXT({ commit }, task) {
             commit('CHANGE_TASK_TEXT', task)
             await axios.patch(`http://localhost:3000/tasks/${task.id}`, {
@@ -156,7 +156,7 @@ export default {
         ACTIVE_TASK(state) {
             return state.activeTask
         },
-        TEXT_ALERT(state){
+        TEXT_ALERT(state) {
             return state.textAlert
         }
     },
