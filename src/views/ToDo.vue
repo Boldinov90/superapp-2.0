@@ -8,7 +8,7 @@
                      class="navigation__text-area"
                      :textPlaceholder="'Введите текст новой задачи'"
                      v-model="newTaskTitle"
-                     @keyup.enter="addNewTask"
+                     @keydown.enter="addNewTask"
                   />
                   <MyButton
                      :valueBtn="'Добавить новую задачу'"
@@ -70,6 +70,7 @@ import MyFormInput from '../components/UI/MyFormInput.vue'
 import MyButton from '../components/UI/MyButton.vue'
 import MyTextArea from '../components/UI/MyTextArea.vue'
 import MyAlert from '../components/UI/MyAlert.vue'
+import { timeout } from 'q'
 
 export default {
    components: {
@@ -114,7 +115,10 @@ export default {
          // this.changeTaskTitle = activeTask.taskTitle
       },
       // Добавление новой задачи
-      addNewTask() {
+      addNewTask(e) {
+         // Отменяем стандартное поведение браузера для отмены принудительного переноса строки
+         e.preventDefault()
+         // Если в инпуте (textarea) что-то есть
          if (this.newTaskTitle) {
             // Генерация нового объекта с задачей
             let newTask = {
@@ -128,10 +132,13 @@ export default {
             this.COUNT_TASKS()
             // Очистка инпута
             this.newTaskTitle = ''
+            // Иначе
          } else {
+            // Открываем алерт и выводим сообщение
             this.TOGGLE_IS_ALERT_OPEN(
                'Задача не может быть пустой! Введите текст новой задачи.',
             )
+            // Закрываем алерт после небольшой задержки
             setTimeout(() => {
                this.TOGGLE_IS_ALERT_OPEN()
             }, 2000)
