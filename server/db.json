@@ -1,49 +1,24 @@
 {
   "tasks": [
     {
-      "id": 1658692936436,
-      "taskTitle": "Помыть посуду",
-      "checkbox": false
+      "id": 1658943181081,
+      "taskTitle": "1",
+      "checkbox": true
     },
     {
-      "id": 1658693094726,
-      "taskTitle": "Вынести мусор\n",
-      "checkbox": false
+      "id": 1658943186425,
+      "taskTitle": "5",
+      "checkbox": true
     },
     {
-      "id": 1658693109860,
-      "taskTitle": "Купить масло\n",
-      "checkbox": false
+      "id": 1658943193771,
+      "taskTitle": "6",
+      "checkbox": true
     },
     {
-      "id": 1658693962279,
-      "taskTitle": "Купить ламбу\n",
-      "checkbox": false
-    },
-    {
-      "id": 1658693996523,
-      "taskTitle": "Купить страну\n",
-      "checkbox": false
-    },
-    {
-      "id": 1658694006087,
-      "taskTitle": "Завоевать польшу\n",
-      "checkbox": false
-    },
-    {
-      "id": 1658694012561,
-      "taskTitle": "додор\n",
-      "checkbox": false
-    },
-    {
-      "id": 1658706429369,
-      "taskTitle": "as",
-      "checkbox": false
-    },
-    {
-      "id": 1658706504800,
-      "taskTitle": "ugh",
-      "checkbox": false
+      "id": 1658943212919,
+      "taskTitle": "7",
+      "checkbox": true
     }
   ]
 }

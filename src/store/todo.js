@@ -45,7 +45,7 @@ export default {
         },
         // Получение всех задач с сервера
         GET_ALL_TASKS(state, response) {
-            state.tasks = response.data
+            state.tasks = response.data.reverse()
         },
         // // Получение активной задачи
         // GET_ACTIVE_TASK(state, task) {
