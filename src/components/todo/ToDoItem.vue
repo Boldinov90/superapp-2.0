@@ -5,7 +5,7 @@
          class="task-item__checkbox"
          type="checkbox"
          :checked="task.checkbox"
-         @click="changeTaskStatus(task)"
+         @click="changeTaskStatus(task, ACTIVE_TASK_NAV)"
       />
       <div
          class="task-item__task-title"
@@ -39,7 +39,7 @@ export default {
    },
    components: { MyButton, MyForm, MyFormInput },
    computed: {
-      ...mapGetters(['IS_FORM_CHANGE_TASK_OPEN']),
+      ...mapGetters(['IS_FORM_CHANGE_TASK_OPEN', 'ACTIVE_TASK_NAV']),
    },
    methods: {
       ...mapActions([
@@ -47,7 +47,7 @@ export default {
          'COUNT_TASKS',
          'CHANGE_TASK_STATUS',
          'TOGGLE_IS_FORM_CHANGE_TASK_OPEN',
-         // 'GET_ACTIVE_TASK',
+         'FILTER_TASKS'
       ]),
       // Функция удаления задачи
       deleteTask(task) {
@@ -57,18 +57,16 @@ export default {
          this.COUNT_TASKS()
       },
       // Функция изменения статуса задачи
-      changeTaskStatus(task) {
+      changeTaskStatus(task, activeTaskNav) {
          // Изменение статуса задачи
          this.CHANGE_TASK_STATUS(task)
          // Обновление счетчиков задач
          this.COUNT_TASKS()
+         this.FILTER_TASKS(activeTaskNav)
       },
       openFormChangeTask(task) {
          this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
-         // this.GET_ACTIVE_TASK(task)
          this.$emit('taskFromItem', task)
-         // this.changeTaskTitle
-         // console.log(task.taskTitle)
       },
       closeFormChangeTask() {
          this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()

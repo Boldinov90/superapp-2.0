@@ -6,7 +6,12 @@ export default {
         isAlertOpen: false,
         textAlert: '',
         isDarkTheme: false,
-        activeTask: {},
+        activeTaskNav: {
+            name: 'allTasks',
+            value: 'Все задачи',
+            isActive: true,
+            count: '',
+        },
         tasks: [],
         tasksSandBox: [],
         tasksNav: [{
@@ -84,6 +89,36 @@ export default {
         ADD_NEW_TASK(state, newTask) {
             state.tasks.unshift(newTask)
         },
+        // Фильтрация задач
+        FILTER_TASKS(state, activeTaskNav) {
+            // Фиксируем активный элемент навигации
+            state.activeTaskNav = activeTaskNav
+            // Удаляем активный статус у всех элементов навигации по задачам
+            state.tasksNav.forEach(element => {
+                element.isActive = false
+            })
+            // Присваиваем активный статус активному элементу навигации
+            state.tasksNav.find((item) => item.name === activeTaskNav.name).isActive = true
+            // Перезаписываем массив песочницу
+            state.tasksSandBox = state.tasks
+            // Если выбрано 'Все задачи'
+            if (activeTaskNav.name === 'allTasks') {
+                // Присваеваем логические значения переменным для отображения сообщений в случае отсутсвия задач
+                // this.isActiveTasksZero = false
+                // this.isDoneTasksZero = false
+                // this.isAllTasksZero = true
+            }
+            // Если выбрано 'Активные задачи'
+            if (activeTaskNav.name === 'activeTasks'){ 
+                // Находим и удаляем активные задачи из песочницы
+                state.tasksSandBox = state.tasksSandBox.filter((item) => item.checkbox === false)
+            }
+            // Если выбрано 'Завершенные задачи'
+            if (activeTaskNav.name === 'doneTasks'){
+                // Находим и удаляем завершенные задачи из песочницы
+                state.tasksSandBox = state.tasksSandBox.filter((item) => item.checkbox === true)
+            }
+        }
     },
     actions: {
         // Переключение темной/светлой темы
@@ -136,6 +171,10 @@ export default {
             commit('ADD_NEW_TASK', newTask)
             await axios.post('http://localhost:3000/tasks', newTask)
         },
+        // Фильтрация задач
+        FILTER_TASKS({ commit }, activeTaskNav) {
+            commit('FILTER_TASKS', activeTaskNav)
+        }
     },
     getters: {
         // Состояние темы
@@ -150,15 +189,15 @@ export default {
         TASKS(state) {
             return state.tasks
         },
-        TASKS_SANDBOX(state){
+        TASKS_SANDBOX(state) {
             return state.tasksSandBox
         },
         // Массив с навигацией по задачам
         TASKSNAV(state) {
             return state.tasksNav
         },
-        ACTIVE_TASK(state) {
-            return state.activeTask
+        ACTIVE_TASK_NAV(state) {
+            return state.activeTaskNav
         },
         TEXT_ALERT(state) {
             return state.textAlert
