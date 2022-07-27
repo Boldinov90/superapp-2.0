@@ -4,6 +4,7 @@
          <li
             class="todo-filter-nav-item"
             :class="{ 'nav-active': taskNav.isActive }"
+            @click="filtrTasks(taskNav)"
          >
             {{ taskNav.value }}
             <div class="todo-filter-nav-item-count">{{ taskNav.count }}</div>
@@ -24,6 +25,9 @@ export default {
    },
    methods: {
       ...mapActions(['COUNT_TASKS']),
+      filtrTasks(activeTaskNav){
+         
+      }
 
    },
    components: {},

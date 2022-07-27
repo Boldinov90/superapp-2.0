@@ -46,6 +46,7 @@ export default {
         // Получение всех задач с сервера
         GET_ALL_TASKS(state, response) {
             state.tasks = response.data.reverse()
+            state.tasksSandBox = state.tasks
         },
         // // Получение активной задачи
         // GET_ACTIVE_TASK(state, task) {
@@ -54,6 +55,7 @@ export default {
         // Удаление задачи
         DELETE_TASK(state, task) {
             state.tasks = state.tasks.filter((item) => item !== task)
+            state.tasksSandBox = state.tasks
         },
         // Счетчик задач
         COUNT_TASKS(state) {
@@ -144,10 +146,12 @@ export default {
         IS_FORM_CHANGE_TASK_OPEN(state) {
             return state.isFormChangeTaskOpen
         },
-
         // Массив со всеми задачами
         TASKS(state) {
             return state.tasks
+        },
+        TASKS_SANDBOX(state){
+            return state.tasksSandBox
         },
         // Массив с навигацией по задачам
         TASKSNAV(state) {

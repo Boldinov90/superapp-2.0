@@ -1,9 +1,8 @@
 <template>
-   <div v-if="TASKS.length !== 0">
-      <div class="todo-list" v-for="task in TASKS" :key="task.id">
+   <div v-if="TASKS_SANDBOX.length !== 0">
+      <div class="todo-list" v-for="task in TASKS_SANDBOX" :key="task.id">
          <ToDoItem :task="task" @taskFromItem="taskFromItem" />
       </div>
-      <!-- <slot></slot> -->
    </div>
    <div class="if-no-tasks" v-else>
       Список задач пуст. Добавьте новую задачу.
@@ -15,16 +14,15 @@ import { mapGetters } from 'vuex'
 import ToDoItem from './ToDoItem.vue'
 
 export default {
-   props: {
-   },
+   props: {},
    components: {
       ToDoItem,
    },
    computed: {
-      ...mapGetters(['TASKS']),
+      ...mapGetters(['TASKS_SANDBOX']),
    },
    methods: {
-      taskFromItem(taskFromItem){
+      taskFromItem(taskFromItem) {
          this.$emit('taskFromItem', taskFromItem)
       },
    },
@@ -32,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.if-no-tasks{
+.if-no-tasks {
    margin-top: 60px;
    display: flex;
    justify-content: center;
