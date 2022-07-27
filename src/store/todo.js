@@ -53,10 +53,6 @@ export default {
             state.tasks = response.data.reverse()
             state.tasksSandBox = state.tasks
         },
-        // // Получение активной задачи
-        // GET_ACTIVE_TASK(state, task) {
-        //    state.activeTask = task
-        // },
         // Удаление задачи
         DELETE_TASK(state, task) {
             state.tasks = state.tasks.filter((item) => item !== task)
@@ -139,10 +135,6 @@ export default {
             commit('GET_ALL_TASKS', response)
             return response
         },
-        // // Получение активной задачи
-        // GET_ACTIVE_TASK({ commit }, task) {
-        //    commit('GET_ACTIVE_TASK', task)
-        // },
         // Удаление задачи
         async DELETE_TASK({ commit }, task) {
             commit('DELETE_TASK', task)
@@ -196,9 +188,11 @@ export default {
         TASKSNAV(state) {
             return state.tasksNav
         },
+        // Активный элемент навигации по задачам
         ACTIVE_TASK_NAV(state) {
             return state.activeTaskNav
         },
+        // Текст уведомления (ALERT)
         TEXT_ALERT(state) {
             return state.textAlert
         }
