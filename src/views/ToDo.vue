@@ -3,26 +3,35 @@
       <div class="todo animate__animated animate__fadeIn">
          <div class="todo__content content">
             <ToDoFilterNav class="content__navigation navigation">
-               <div class="navigation__buttons">
-                  
-                  <MyTextArea
-                     class="navigation__text-area"
-                     :textPlaceholder="'Введите текст новой задачи'"
-                     v-model="newTaskTitle"
-                     @keydown.enter="addNewTask"
-                  />
+               <div class="navigation__sidebar sidebar">
+                  <div class="sidebar__input-group">
+                     <MyTextArea
+                        class="navigation__text-area"
+                        :textPlaceholder="'Введите текст новой задачи'"
+                        v-model="newTaskTitle"
+                        @keydown.enter="addNewTask"
+                     />
+                     <MyButton
+                        :valueBtn="'Добавить новую задачу'"
+                        class="navigation__btn"
+                        @click="addNewTask"
+                     />
+                  </div>
                   <MyButton
-                     :valueBtn="'Добавить новую задачу'"
+                     :valueBtn="'Сделать все задачи активными'"
                      class="navigation__btn"
-                     @click="addNewTask"
-                  />
-                  <MyButton
-                     :valueBtn="'Удалить завершенные задачи'"
-                     class="navigation__btn"
+                     @click="makeAllTasksActiveOrDone(false, ACTIVE_TASK_NAV)"
                   />
                   <MyButton
                      :valueBtn="'Завершить все задачи'"
                      class="navigation__btn"
+                     @click="makeAllTasksActiveOrDone(true, ACTIVE_TASK_NAV)"
+                  />
+                  <MyButton
+                     :valueBtn="'Удалить завершенные задачи'"
+                     class="navigation__btn"
+                     @click="delAllDoneTasks"
+                     
                   />
                </div>
             </ToDoFilterNav>
@@ -71,7 +80,6 @@ import MyFormInput from '../components/UI/MyFormInput.vue'
 import MyButton from '../components/UI/MyButton.vue'
 import MyTextArea from '../components/UI/MyTextArea.vue'
 import MyAlert from '../components/UI/MyAlert.vue'
-import { timeout } from 'q'
 
 export default {
    components: {
@@ -99,6 +107,7 @@ export default {
          'ACTIVE_TASK',
          'TASKS',
          'TEXT_ALERT',
+         'ACTIVE_TASK_NAV'
       ]),
    },
    methods: {
@@ -108,12 +117,14 @@ export default {
          'COUNT_TASKS',
          'CHANGE_TASK_TEXT',
          'TOGGLE_IS_ALERT_OPEN',
+         'MAKE_ALL_TASKS_ACTIVE_OR_DONE',
+         'DELETE_TASK',
+         'FILTER_TASKS'
       ]),
       // Закрытие формы изменения текста задачи
       closeFormChangeTask() {
          // Переключение статуса формы редактирования во VueX
          this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
-         // this.changeTaskTitle = activeTask.taskTitle
       },
       // Добавление новой задачи
       addNewTask(e) {
@@ -139,7 +150,7 @@ export default {
             this.TOGGLE_IS_ALERT_OPEN(
                'Задача не может быть пустой! Введите текст новой задачи.',
             )
-            // Закрываем алерт после небольшой задержки
+            // Закрываем алерт после небольшой задержки для лучшей визуализации
             setTimeout(() => {
                this.TOGGLE_IS_ALERT_OPEN()
             }, 2000)
@@ -155,9 +166,11 @@ export default {
             // Переключение статуса формы редактирования во VueX
             this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
          } else {
+            // Открываем алерт и выводим сообщение
             this.TOGGLE_IS_ALERT_OPEN(
                'Задача не может быть пустой! Введите текст задачи.',
             )
+            // Закрываем алерт после небольшой задержки для лучшей визуализации
             setTimeout(() => {
                this.TOGGLE_IS_ALERT_OPEN()
             }, 2000)
@@ -169,6 +182,28 @@ export default {
          this.changeTaskTitle = taskFromItem.taskTitle
          // Запись в переменную активной задачи
          this.activeTask = taskFromItem
+      },
+      // Сделать все задачи активными или завершенными
+      makeAllTasksActiveOrDone(boolean, activeTaskNav) {
+         const data = {
+            tasks: this.TASKS,
+            boolean: boolean,
+         }
+         // Сделать все задачи активными или завершенными
+         this.MAKE_ALL_TASKS_ACTIVE_OR_DONE(data)
+         // Обновление счетчиков задач
+         this.COUNT_TASKS()
+         this.FILTER_TASKS(activeTaskNav)
+      },
+      // Удаление всех завершенных задач
+      delAllDoneTasks() {
+         this.TASKS.forEach((element) => {
+            if (element.checkbox) {
+               this.DELETE_TASK(element)
+            }
+         })
+         // Обновление счетчиков задач
+         this.COUNT_TASKS()
       },
    },
 }
@@ -183,15 +218,20 @@ export default {
          display: grid;
          grid-template-columns: 1fr;
          .content__navigation {
-            .navigation__buttons {
+            .navigation__sidebar {
                margin-top: 50px;
                display: flex;
                flex-direction: column;
-               .navigation__text-area {
-                  margin-bottom: 10px;
+               .sidebar__input-group {
+                  display: flex;
+                  flex-direction: column;
+                  margin-bottom: 20px;
+                  .navigation__text-area {
+                     margin-bottom: 10px;
+                  }
                }
                .navigation__btn {
-                  margin-bottom: 10px;
+                  margin-bottom: 7px;
                   background-color: $accent-color;
                   color: $text-button-color;
                }

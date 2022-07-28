@@ -59,7 +59,7 @@ export default {
             align-items: center;
             color: white;
             font-size: 12px;
-            background-color: #3273f6;
+            background-color: $accent-color;
             width: 30px;
             height: 17px;
             border-radius: 10px;

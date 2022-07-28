@@ -64,7 +64,7 @@ export default {
             this.COUNT_TASKS()
             // Фильтрация задач при изменении статуса задачи
             this.FILTER_TASKS(activeTaskNav)
-         }, 300)
+         }, 200)
       },
       openFormChangeTask(task) {
          this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
