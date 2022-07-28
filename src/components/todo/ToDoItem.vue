@@ -34,8 +34,7 @@ import MyFormInput from '../UI/MyFormInput.vue'
 
 export default {
    props: {
-      task:  Object,
-      // changeTaskTitle: String
+      task: Object,
    },
    components: { MyButton, MyForm, MyFormInput },
    computed: {
@@ -47,7 +46,7 @@ export default {
          'COUNT_TASKS',
          'CHANGE_TASK_STATUS',
          'TOGGLE_IS_FORM_CHANGE_TASK_OPEN',
-         'FILTER_TASKS'
+         'FILTER_TASKS',
       ]),
       // Функция удаления задачи
       deleteTask(task) {
@@ -60,9 +59,12 @@ export default {
       changeTaskStatus(task, activeTaskNav) {
          // Изменение статуса задачи
          this.CHANGE_TASK_STATUS(task)
-         // Обновление счетчиков задач
-         this.COUNT_TASKS()
-         this.FILTER_TASKS(activeTaskNav)
+         setTimeout(() => { 
+            // Обновление счетчиков задач
+            this.COUNT_TASKS()
+            // Фильтрация задач при изменении статуса задачи
+            this.FILTER_TASKS(activeTaskNav)
+         }, 300)
       },
       openFormChangeTask(task) {
          this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()

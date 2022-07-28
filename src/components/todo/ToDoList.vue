@@ -1,11 +1,20 @@
 <template>
+   <!-- IS_ZERO_TASKS.isAllTasksZero -->
    <div v-if="TASKS_SANDBOX.length !== 0">
       <div class="todo-list" v-for="task in TASKS_SANDBOX" :key="task.id">
          <ToDoItem :task="task" @taskFromItem="taskFromItem" />
       </div>
    </div>
    <div class="if-no-tasks" v-else>
-      Список задач пуст. Добавьте новую задачу.
+      <div v-if="!TASKS.length">
+         Список задач пуст. Добавьте новую задачу.
+      </div>
+      <div v-else-if="IS_ZERO_TASKS.isActiveTasksZero">
+         Список активных задач пуст.
+      </div>
+      <div v-else-if="IS_ZERO_TASKS.isDoneTasksZero">
+         Список завершенных задач пуст.
+      </div>
    </div>
 </template>
 
@@ -19,7 +28,7 @@ export default {
       ToDoItem,
    },
    computed: {
-      ...mapGetters(['TASKS_SANDBOX']),
+      ...mapGetters(['TASKS', 'TASKS_SANDBOX', 'IS_ZERO_TASKS']),
    },
    methods: {
       taskFromItem(taskFromItem) {

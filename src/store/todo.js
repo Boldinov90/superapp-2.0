@@ -14,25 +14,31 @@ export default {
         },
         tasks: [],
         tasksSandBox: [],
-        tasksNav: [{
-            name: 'allTasks',
-            value: 'Все задачи',
-            isActive: true,
-            count: '',
-        },
-        {
-            name: 'activeTasks',
-            value: 'Активные задачи',
-            isActive: '',
-            count: '',
-        },
-        {
-            name: 'doneTasks',
-            value: 'Завершенные',
-            isActive: '',
-            count: '',
-        },
+        tasksNav: [
+            {
+                name: 'allTasks',
+                value: 'Все задачи',
+                isActive: true,
+                count: '',
+            },
+            {
+                name: 'activeTasks',
+                value: 'Активные задачи',
+                isActive: '',
+                count: '',
+            },
+            {
+                name: 'doneTasks',
+                value: 'Завершенные',
+                isActive: '',
+                count: '',
+            },
         ],
+        isZeroTasks: {
+            // isAllTasksZero: false,
+            isActiveTasksZero: false,
+            isDoneTasksZero: false
+        }
     },
     mutations: {
         // Переключение темной/светлой темы
@@ -97,22 +103,22 @@ export default {
             state.tasksNav.find((item) => item.name === activeTaskNav.name).isActive = true
             // Перезаписываем массив песочницу
             state.tasksSandBox = state.tasks
-            // Если выбрано 'Все задачи'
-            if (activeTaskNav.name === 'allTasks') {
-                // Присваеваем логические значения переменным для отображения сообщений в случае отсутсвия задач
-                // this.isActiveTasksZero = false
-                // this.isDoneTasksZero = false
-                // this.isAllTasksZero = true
-            }
+            // Обнуляем статусы отсутствующих задач 
+            state.isZeroTasks.isActiveTasksZero = false
+            state.isZeroTasks.isDoneTasksZero = false
             // Если выбрано 'Активные задачи'
-            if (activeTaskNav.name === 'activeTasks'){ 
+            if (activeTaskNav.name === 'activeTasks') {
                 // Находим и удаляем активные задачи из песочницы
                 state.tasksSandBox = state.tasksSandBox.filter((item) => item.checkbox === false)
+                // Обозначаем положительный статус отсутствия активных задач
+                state.isZeroTasks.isActiveTasksZero = true
             }
             // Если выбрано 'Завершенные задачи'
-            if (activeTaskNav.name === 'doneTasks'){
+            if (activeTaskNav.name === 'doneTasks') {
                 // Находим и удаляем завершенные задачи из песочницы
                 state.tasksSandBox = state.tasksSandBox.filter((item) => item.checkbox === true)
+                // Обозначаем положительный статус отсутствия завершенных задач
+                state.isZeroTasks.isDoneTasksZero = true
             }
         }
     },
@@ -195,6 +201,9 @@ export default {
         // Текст уведомления (ALERT)
         TEXT_ALERT(state) {
             return state.textAlert
+        },
+        IS_ZERO_TASKS(state) {
+            return state.isZeroTasks
         }
     },
 }

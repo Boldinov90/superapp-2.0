@@ -1,38 +1,18 @@
 {
   "tasks": [
     {
-      "id": 1658946592630,
-      "taskTitle": "2",
+      "id": 1659003518572,
+      "taskTitle": "Купить мыло",
       "checkbox": false
     },
     {
-      "id": 1658946607549,
-      "taskTitle": "4",
-      "checkbox": true
+      "id": 1659003523661,
+      "taskTitle": "купить масло",
+      "checkbox": false
     },
     {
-      "id": 1658946608452,
-      "taskTitle": "6",
-      "checkbox": true
-    },
-    {
-      "id": 1658949282329,
-      "taskTitle": "3",
-      "checkbox": true
-    },
-    {
-      "id": 1658949283144,
-      "taskTitle": "3",
-      "checkbox": true
-    },
-    {
-      "id": 1658949283807,
-      "taskTitle": "4",
-      "checkbox": true
-    },
-    {
-      "id": 1658949284431,
-      "taskTitle": "4",
+      "id": 1659003546660,
+      "taskTitle": "Помыть машину",
       "checkbox": false
     }
   ]

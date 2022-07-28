@@ -4,6 +4,7 @@
          <div class="todo__content content">
             <ToDoFilterNav class="content__navigation navigation">
                <div class="navigation__buttons">
+                  
                   <MyTextArea
                      class="navigation__text-area"
                      :textPlaceholder="'Введите текст новой задачи'"
