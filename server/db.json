@@ -1,28 +1,13 @@
 {
   "tasks": [
     {
-      "id": 1659035016631,
-      "taskTitle": "1",
-      "checkbox": false
-    },
-    {
       "id": 1659035017234,
-      "taskTitle": "2",
-      "checkbox": false
-    },
-    {
-      "id": 1659035017700,
-      "taskTitle": "3",
+      "taskTitle": "Купить мыло",
       "checkbox": false
     },
     {
       "id": 1659035018070,
-      "taskTitle": "4",
-      "checkbox": false
-    },
-    {
-      "id": 1659035018769,
-      "taskTitle": "5",
+      "taskTitle": "Купить масло",
       "checkbox": true
     }
   ]
