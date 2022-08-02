@@ -120,12 +120,6 @@ export default {
                 state.isZeroTasks.isDoneTasksZero = true
             }
         },
-        // Сделать все задачи активными или завершенными
-        MAKE_ALL_TASKS_ACTIVE_OR_DONE(state, data) {
-            state.tasks.forEach(element => {
-                element.checkbox = data.boolean
-            })
-        },
     },
     actions: {
         // Переключение темной/светлой темы
@@ -177,15 +171,6 @@ export default {
         // Фильтрация задач
         FILTER_TASKS({ commit }, activeTaskNav) {
             commit('FILTER_TASKS', activeTaskNav)
-        },
-
-        // Сделать все задачи активными или завершенными
-        async MAKE_ALL_TASKS_ACTIVE_OR_DONE({ commit }, data) {
-            commit('MAKE_ALL_TASKS_ACTIVE_OR_DONE', data)
-            // Так как функционал json-server (фейковый API) ограничен, обноить весь массив пришлось данным способом
-            await data.tasks.forEach(element => {
-                axios.patch(`http://localhost:3000/tasks/${element.id}`, element)
-            })
         },
     },
     getters: {

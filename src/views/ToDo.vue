@@ -4,35 +4,27 @@
          <div class="todo__content content">
             <ToDoFilterNav class="content__navigation navigation">
                <div class="navigation__sidebar sidebar">
-                  <div class="sidebar__input-group">
+                  <div class="sidebar__add-new-task add-new-task">
                      <MyTextArea
-                        class="navigation__text-area"
+                        class="add-new-task__text-area"
                         :textPlaceholder="'Введите текст новой задачи'"
                         v-model="newTaskTitle"
                         @keydown.enter="addNewTask"
                      />
                      <MyButton
                         :valueBtn="'Добавить новую задачу'"
-                        class="navigation__btn"
+                        class="add-new-task__btn btns"
                         @click="addNewTask"
                      />
                   </div>
-                  <MyButton
-                     :valueBtn="'Сделать все задачи активными'"
-                     class="navigation__btn"
-                     @click="makeAllTasksActiveOrDone(false, ACTIVE_TASK_NAV)"
-                  />
-                  <MyButton
-                     :valueBtn="'Завершить все задачи'"
-                     class="navigation__btn"
-                     @click="makeAllTasksActiveOrDone(true, ACTIVE_TASK_NAV)"
-                  />
-                  <MyButton
-                     :valueBtn="'Удалить завершенные задачи'"
-                     class="navigation__btn"
-                     @click="delAllDoneTasks"
-                     
-                  />
+                  <div class="sidebar__search search">
+                     <MyFormInput
+                        :textPlaceholder="'Поиск'"
+                        class="search__input"
+                        v-model="searchInputValue"
+                     />
+                     <MyButton :valueBtn="'Найти'" class="search__btn btns" />
+                  </div>
                </div>
             </ToDoFilterNav>
             <ToDoList class="content__todo-list" @taskFromItem="taskFromItem" />
@@ -43,11 +35,11 @@
                @submit.prevent
             >
                <MyFormInput
-                  class="form__input"
+                  class="form-change-task__input"
                   :textPlaceholder="'Введите текст задачи'"
                   v-model="changeTaskTitle"
                />
-               <div class="form__btns">
+               <div class="form-change-task__btns">
                   <MyButton
                      :valueBtn="'Обновить'"
                      class="btn"
@@ -96,6 +88,7 @@ export default {
       return {
          newTaskTitle: '',
          changeTaskTitle: '',
+         searchInputValue: '',
          activeTask: {},
          alertTitle: '',
       }
@@ -105,9 +98,8 @@ export default {
          'IS_DARK_THEME',
          'IS_FORM_CHANGE_TASK_OPEN',
          'ACTIVE_TASK',
-         'TASKS',
          'TEXT_ALERT',
-         'ACTIVE_TASK_NAV'
+         'ACTIVE_TASK_NAV',
       ]),
    },
    methods: {
@@ -117,9 +109,8 @@ export default {
          'COUNT_TASKS',
          'CHANGE_TASK_TEXT',
          'TOGGLE_IS_ALERT_OPEN',
-         'MAKE_ALL_TASKS_ACTIVE_OR_DONE',
          'DELETE_TASK',
-         'FILTER_TASKS'
+         'FILTER_TASKS',
       ]),
       // Закрытие формы изменения текста задачи
       closeFormChangeTask() {
@@ -183,28 +174,6 @@ export default {
          // Запись в переменную активной задачи
          this.activeTask = taskFromItem
       },
-      // Сделать все задачи активными или завершенными
-      makeAllTasksActiveOrDone(boolean, activeTaskNav) {
-         const data = {
-            tasks: this.TASKS,
-            boolean: boolean,
-         }
-         // Сделать все задачи активными или завершенными
-         this.MAKE_ALL_TASKS_ACTIVE_OR_DONE(data)
-         // Обновление счетчиков задач
-         this.COUNT_TASKS()
-         this.FILTER_TASKS(activeTaskNav)
-      },
-      // Удаление всех завершенных задач
-      delAllDoneTasks() {
-         this.TASKS.forEach((element) => {
-            if (element.checkbox) {
-               this.DELETE_TASK(element)
-            }
-         })
-         // Обновление счетчиков задач
-         this.COUNT_TASKS()
-      },
    },
 }
 </script>
@@ -219,21 +188,27 @@ export default {
          grid-template-columns: 1fr;
          .content__navigation {
             .navigation__sidebar {
-               margin-top: 50px;
+               margin-top: 35px;
                display: flex;
                flex-direction: column;
-               .sidebar__input-group {
-                  display: flex;
-                  flex-direction: column;
-                  margin-bottom: 20px;
-                  .navigation__text-area {
-                     margin-bottom: 10px;
-                  }
-               }
-               .navigation__btn {
+               .btns {
                   margin-bottom: 7px;
                   background-color: $accent-color;
                   color: $text-button-color;
+                  width: 100%;
+               }
+               .sidebar__add-new-task {
+                  display: flex;
+                  flex-direction: column;
+                  margin-bottom: 20px;
+                  .add-new-task__text-area {
+                     margin-bottom: 10px;
+                  }
+               }
+               .sidebar__search {
+                  .search__input {
+                     margin-bottom: 10px;
+                  }
                }
             }
          }
@@ -242,7 +217,7 @@ export default {
          }
          .content__form-change-task {
             animation-duration: 0.2s;
-            .form__btns {
+            .form-change-task__btns {
                margin-top: 20px;
                @extend %flexallcenter;
                .btn {

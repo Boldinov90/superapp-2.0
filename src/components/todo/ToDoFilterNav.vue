@@ -16,6 +16,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+
 export default {
    data() {
       return {}
@@ -25,10 +26,9 @@ export default {
    },
    methods: {
       ...mapActions(['COUNT_TASKS', 'FILTER_TASKS']),
-      filterTasks(activeTaskNav){
+      filterTasks(activeTaskNav) {
          this.FILTER_TASKS(activeTaskNav)
-      }
-
+      },
    },
    components: {},
    beforeMount() {
@@ -44,6 +44,7 @@ export default {
 .todo-filter-nav-wrapper {
    position: fixed;
    .todo-filter-nav {
+      width: 230px;
       .todo-filter-nav-item {
          color: $text-menu-color;
          font-size: 14px;

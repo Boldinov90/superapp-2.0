@@ -1,5 +1,4 @@
 <template>
-   <!-- IS_ZERO_TASKS.isAllTasksZero -->
    <div v-if="TASKS_SANDBOX.length !== 0">
       <div class="todo-list" v-for="task in TASKS_SANDBOX" :key="task.id">
          <ToDoItem :task="task" @taskFromItem="taskFromItem" />

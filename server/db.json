@@ -8,7 +8,37 @@
     {
       "id": 1659035018070,
       "taskTitle": "Купить масло",
-      "checkbox": true
+      "checkbox": false
+    },
+    {
+      "id": 1659431243624,
+      "taskTitle": "Купить молоко",
+      "checkbox": false
+    },
+    {
+      "id": 1659431249472,
+      "taskTitle": "Помыть посуду",
+      "checkbox": false
+    },
+    {
+      "id": 1659431257813,
+      "taskTitle": "Вынести мусор",
+      "checkbox": false
+    },
+    {
+      "id": 1659431264027,
+      "taskTitle": "Позвонить маме",
+      "checkbox": false
+    },
+    {
+      "id": 1659431279249,
+      "taskTitle": "Покормить кошку",
+      "checkbox": false
+    },
+    {
+      "id": 1659431288655,
+      "taskTitle": "Поменять воду в аквариуме",
+      "checkbox": false
     }
   ]
 }
