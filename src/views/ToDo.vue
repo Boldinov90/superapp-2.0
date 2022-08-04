@@ -4,6 +4,16 @@
          <div class="todo__content content">
             <ToDoFilterNav class="content__navigation navigation">
                <div class="navigation__sidebar sidebar">
+                  <div class="sidebar__search search">
+                     <MyFormInput
+                        :textPlaceholder="'Поиск'"
+                        class="search__input"
+                        v-model="searchInputValue"
+                     />
+                     <div class="search__btn-clear" @click="clearSearchInput">
+                        &#10005;
+                     </div>
+                  </div>
                   <div class="sidebar__add-new-task add-new-task">
                      <MyTextArea
                         class="add-new-task__text-area"
@@ -16,14 +26,6 @@
                         class="add-new-task__btn btns"
                         @click="addNewTask"
                      />
-                  </div>
-                  <div class="sidebar__search search">
-                     <MyFormInput
-                        :textPlaceholder="'Поиск'"
-                        class="search__input"
-                        v-model="searchInputValue"
-                     />
-                     <MyButton :valueBtn="'Найти'" class="search__btn btns" />
                   </div>
                </div>
             </ToDoFilterNav>
@@ -100,6 +102,7 @@ export default {
          'ACTIVE_TASK',
          'TEXT_ALERT',
          'ACTIVE_TASK_NAV',
+         'TASKS',
       ]),
    },
    methods: {
@@ -111,6 +114,7 @@ export default {
          'TOGGLE_IS_ALERT_OPEN',
          'DELETE_TASK',
          'FILTER_TASKS',
+         'GET_TASKS_BY_TEXT',
       ]),
       // Закрытие формы изменения текста задачи
       closeFormChangeTask() {
@@ -174,6 +178,18 @@ export default {
          // Запись в переменную активной задачи
          this.activeTask = taskFromItem
       },
+      clearSearchInput() {
+         // this.GET_TASKS_BY_TEXT(this.searchInputValue)
+         this.searchInputValue = ''
+         // this.GET_TASKS_BY_TEXT(this.searchInputValue)
+
+      },
+   },
+   watch: {
+      searchInputValue() {
+         this.GET_TASKS_BY_TEXT(this.searchInputValue)
+         console.log('this.TASSKS', this.TASKS)
+      },
    },
 }
 </script>
@@ -197,16 +213,30 @@ export default {
                   color: $text-button-color;
                   width: 100%;
                }
+               .sidebar__search {
+                  position: relative;
+                  .search__input {
+                     margin-bottom: 10px;
+                  }
+                  .search__btn-clear {
+                     position: absolute;
+                     top: 20px;
+                     right: 10px;
+                     cursor: pointer;
+                     color: $text-menu-color;
+                     transition: 0.2s;
+                     &:hover {
+                        transform: scale(1.2);
+                        transition: 0.2s;
+                        color: red;
+                     }
+                  }
+               }
                .sidebar__add-new-task {
                   display: flex;
                   flex-direction: column;
                   margin-bottom: 20px;
                   .add-new-task__text-area {
-                     margin-bottom: 10px;
-                  }
-               }
-               .sidebar__search {
-                  .search__input {
                      margin-bottom: 10px;
                   }
                }

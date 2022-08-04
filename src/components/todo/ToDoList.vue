@@ -5,7 +5,8 @@
       </div>
    </div>
    <div class="if-no-tasks" v-else>
-      <div v-if="!TASKS.length">
+      <div v-if="!TASKS.length && IS_ZERO_TASKS.isAllTasksZero">
+      <!-- isAllTasksZero -->
          Список задач пуст. Добавьте новую задачу.
       </div>
       <div v-else-if="IS_ZERO_TASKS.isActiveTasksZero">
@@ -13,6 +14,9 @@
       </div>
       <div v-else-if="IS_ZERO_TASKS.isDoneTasksZero">
          Список завершенных задач пуст.
+      </div>
+      <div v-else-if="!TASKS_SANDBOX.length && IS_ZERO_TASKS.isSearchTasksZero">
+         Ничего не найдено.
       </div>
    </div>
 </template>

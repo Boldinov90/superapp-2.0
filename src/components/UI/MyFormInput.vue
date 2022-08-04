@@ -35,7 +35,7 @@ export default {
       margin-bottom: 7px;
    }
    input {
-      padding: 10px 10px;
+      padding: 10px 30px 10px 10px;
       font-size: 14px;
       border: 1px solid rgba(157, 157, 157, 0.301);
       border-radius: 4px;

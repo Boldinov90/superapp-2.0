@@ -35,8 +35,10 @@ export default {
             },
         ],
         isZeroTasks: {
+            isAllTasksZero: false,
             isActiveTasksZero: false,
-            isDoneTasksZero: false
+            isDoneTasksZero: false,
+            isSearchTasksZero: false
         }
     },
     mutations: {
@@ -103,8 +105,13 @@ export default {
             // Перезаписываем массив песочницу
             state.tasksSandBox = state.tasks
             // Обнуляем статусы отсутствующих задач 
+            state.isZeroTasks.isAllTasksZero = false
             state.isZeroTasks.isActiveTasksZero = false
             state.isZeroTasks.isDoneTasksZero = false
+            state.isZeroTasks.isSearchTasksZero = false
+            if (activeTaskNav.name === 'allTasks'){
+                state.isZeroTasks.isAllTasksZero = true
+            }
             // Если выбрано 'Активные задачи'
             if (activeTaskNav.name === 'activeTasks') {
                 // Находим и удаляем активные задачи из песочницы
@@ -118,6 +125,18 @@ export default {
                 state.tasksSandBox = state.tasksSandBox.filter((item) => item.checkbox === true)
                 // Обозначаем положительный статус отсутствия завершенных задач
                 state.isZeroTasks.isDoneTasksZero = true
+            }
+        },
+        // Поиск по тексту задачи
+        GET_TASKS_BY_TEXT(state, response) {
+            state.tasks = response.data.reverse()
+            state.tasksSandBox = state.tasks
+            // Обнуляем статусы отсутствующих задач 
+            state.isZeroTasks.isAllTasksZero = false
+            state.isZeroTasks.isActiveTasksZero = false
+            state.isZeroTasks.isDoneTasksZero = false
+            if (!state.tasks.length) {
+                state.isZeroTasks.isSearchTasksZero = true
             }
         },
     },
@@ -172,6 +191,10 @@ export default {
         FILTER_TASKS({ commit }, activeTaskNav) {
             commit('FILTER_TASKS', activeTaskNav)
         },
+        async GET_TASKS_BY_TEXT({ commit }, text) {
+            const response = await axios.get(`http://localhost:3000/tasks?taskTitle_like=${text}`)
+            commit('GET_TASKS_BY_TEXT', response)
+        }
     },
     getters: {
         // Состояние темы
