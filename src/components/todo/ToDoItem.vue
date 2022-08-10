@@ -38,7 +38,7 @@ export default {
    },
    components: { MyButton, MyForm, MyFormInput },
    computed: {
-      ...mapGetters(['IS_FORM_CHANGE_TASK_OPEN', 'ACTIVE_TASK_NAV']),
+      ...mapGetters(['ACTIVE_TASK_NAV']),
    },
    methods: {
       ...mapActions([
@@ -68,11 +68,16 @@ export default {
             this.FILTER_TASKS(activeTaskNav)
          }, 200)
       },
+      // Открытие формы редактирования задачи
       openFormChangeTask(task) {
+         // Переключение во vuex статуса отображения формы редактирования задачи
          this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
+         // Передача родительскому компоненту текста из задачи
          this.$emit('taskFromItem', task)
       },
+      // Закрытие формы редактирования задачи
       closeFormChangeTask() {
+         // Переключение во vuex статуса отображения формы редактирования задачи
          this.TOGGLE_IS_FORM_CHANGE_TASK_OPEN()
       },
    },

@@ -30,7 +30,6 @@ export default {
          this.FILTER_TASKS(taskNav)
       },
    },
-   components: {},
    beforeMount() {
       this.COUNT_TASKS()
       window.addEventListener('load', () => {

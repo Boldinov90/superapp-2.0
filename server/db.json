@@ -3,12 +3,12 @@
     {
       "id": 1660054848395,
       "taskTitle": "Купить жидкое мыло",
-      "checkbox": true
+      "checkbox": false
     },
     {
       "id": 1660054854871,
       "taskTitle": "Купить хлеб",
-      "checkbox": true
+      "checkbox": false
     },
     {
       "id": 1660054859942,
@@ -18,17 +18,12 @@
     {
       "id": 1660054867940,
       "taskTitle": "Покормить кошку",
-      "checkbox": false
+      "checkbox": true
     },
     {
       "id": 1660054876018,
       "taskTitle": "Вынести мусор",
       "checkbox": false
-    },
-    {
-      "id": 1660117121066,
-      "taskTitle": "Загрузить стиральную машину",
-      "checkbox": true
     }
   ]
 }

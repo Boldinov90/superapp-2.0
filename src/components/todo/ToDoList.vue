@@ -15,7 +15,7 @@
          Список завершенных задач пуст.
       </div>
       <div v-else-if="IS_ZERO_TASKS.isSearchTasksZero">
-         Ничего не найдено. Задачи, соответствующие критерию поиска, отсутствуют.
+         Ничего не найдено.
       </div>
    </div>
 </template>
@@ -25,14 +25,14 @@ import { mapGetters } from 'vuex'
 import ToDoItem from './ToDoItem.vue'
 
 export default {
-   props: {},
    components: {
       ToDoItem,
    },
    computed: {
-      ...mapGetters(['TASKS', 'TASKS_SANDBOX', 'IS_ZERO_TASKS']),
+      ...mapGetters(['TASKS_SANDBOX', 'IS_ZERO_TASKS']),
    },
    methods: {
+      // Передача родительскому компоненту текста из задачи
       taskFromItem(taskFromItem) {
          this.$emit('taskFromItem', taskFromItem)
       },

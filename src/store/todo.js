@@ -96,7 +96,6 @@ export default {
         // Добавление новой задачи
         ADD_NEW_TASK(state, newTask) {
             state.tasks.unshift(newTask)
-            // Перезаписываем массив песочницу
             state.tasksSandBox = state.tasks
         },
         // Фильтрация задач
@@ -219,6 +218,7 @@ export default {
         FILTER_TASKS({ commit }, activeTaskNav) {
             commit('FILTER_TASKS', activeTaskNav)
         },
+        // Поиск по тексту задачи
         async GET_TASKS_BY_TEXT({ commit }, text) {
             const response = await axios.get(`http://localhost:3000/tasks?taskTitle_like=${text}`)
             commit('GET_TASKS_BY_TEXT', response)
@@ -252,9 +252,11 @@ export default {
         TEXT_ALERT(state) {
             return state.textAlert
         },
+        // Статусы наличия задач
         IS_ZERO_TASKS(state) {
             return state.isZeroTasks
         },
+        // Содержимое поля ввода поиска задач
         SEARCH_INPUT_VALUE(state) {
             return state.searchInputValue
         }
