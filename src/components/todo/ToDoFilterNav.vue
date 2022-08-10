@@ -22,12 +22,12 @@ export default {
       return {}
    },
    computed: {
-      ...mapGetters(['TASKSNAV']),
+      ...mapGetters(['TASKSNAV', 'ACTIVE_TASK_NAV']),
    },
    methods: {
       ...mapActions(['COUNT_TASKS', 'FILTER_TASKS']),
-      filterTasks(activeTaskNav) {
-         this.FILTER_TASKS(activeTaskNav)
+      filterTasks(taskNav) {
+         this.FILTER_TASKS(taskNav)
       },
    },
    components: {},
@@ -36,6 +36,7 @@ export default {
       window.addEventListener('load', () => {
          this.COUNT_TASKS()
       })
+      this.FILTER_TASKS(this.ACTIVE_TASK_NAV)
    },
 }
 </script>

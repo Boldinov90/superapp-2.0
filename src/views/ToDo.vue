@@ -97,12 +97,9 @@ export default {
    },
    computed: {
       ...mapGetters([
-         'IS_DARK_THEME',
          'IS_FORM_CHANGE_TASK_OPEN',
-         'ACTIVE_TASK',
          'TEXT_ALERT',
          'ACTIVE_TASK_NAV',
-         'TASKS',
       ]),
    },
    methods: {
@@ -112,9 +109,9 @@ export default {
          'COUNT_TASKS',
          'CHANGE_TASK_TEXT',
          'TOGGLE_IS_ALERT_OPEN',
-         'DELETE_TASK',
          'FILTER_TASKS',
          'GET_TASKS_BY_TEXT',
+         'SAVE_SEARCH_INPUT_VALUE',
       ]),
       // Закрытие формы изменения текста задачи
       closeFormChangeTask() {
@@ -135,6 +132,8 @@ export default {
             }
             // Добавление новой задачи во vuex и на сервере
             this.ADD_NEW_TASK(newTask)
+            // Фильтрация задач
+            this.FILTER_TASKS(this.ACTIVE_TASK_NAV)
             // Обновление счетчиков задач
             this.COUNT_TASKS()
             // Очистка инпута
@@ -178,17 +177,20 @@ export default {
          // Запись в переменную активной задачи
          this.activeTask = taskFromItem
       },
+      // Очистка содержимого поля ввода поиска
       clearSearchInput() {
-         // this.GET_TASKS_BY_TEXT(this.searchInputValue)
          this.searchInputValue = ''
-         // this.GET_TASKS_BY_TEXT(this.searchInputValue)
-
       },
    },
    watch: {
-      searchInputValue() {
-         this.GET_TASKS_BY_TEXT(this.searchInputValue)
-         console.log('this.TASSKS', this.TASKS)
+      // При изменении поля ввода поиска
+      async searchInputValue() {
+         // Сохранение содержимого поля ввода поиска во Vuex
+         await this.SAVE_SEARCH_INPUT_VALUE(this.searchInputValue)
+         // Получение задач по введенному тексту поиска
+         await this.GET_TASKS_BY_TEXT(this.searchInputValue)
+         // Фильтрация адач
+         await this.FILTER_TASKS(this.ACTIVE_TASK_NAV)
       },
    },
 }

@@ -1,12 +1,11 @@
 <template>
-   <div v-if="TASKS_SANDBOX.length !== 0">
+   <div v-if="TASKS_SANDBOX.length">
       <div class="todo-list" v-for="task in TASKS_SANDBOX" :key="task.id">
          <ToDoItem :task="task" @taskFromItem="taskFromItem" />
       </div>
    </div>
    <div class="if-no-tasks" v-else>
-      <div v-if="!TASKS.length && IS_ZERO_TASKS.isAllTasksZero">
-      <!-- isAllTasksZero -->
+      <div v-if="IS_ZERO_TASKS.isAllTasksZero">
          Список задач пуст. Добавьте новую задачу.
       </div>
       <div v-else-if="IS_ZERO_TASKS.isActiveTasksZero">
@@ -15,8 +14,8 @@
       <div v-else-if="IS_ZERO_TASKS.isDoneTasksZero">
          Список завершенных задач пуст.
       </div>
-      <div v-else-if="!TASKS_SANDBOX.length && IS_ZERO_TASKS.isSearchTasksZero">
-         Ничего не найдено.
+      <div v-else-if="IS_ZERO_TASKS.isSearchTasksZero">
+         Ничего не найдено. Задачи, соответствующие критерию поиска, отсутствуют.
       </div>
    </div>
 </template>

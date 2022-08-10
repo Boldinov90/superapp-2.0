@@ -39,9 +39,14 @@ export default {
             isActiveTasksZero: false,
             isDoneTasksZero: false,
             isSearchTasksZero: false
-        }
+        },
+        searchInputValue: ''
     },
     mutations: {
+        // Запись содержимого поиска задачь
+        SAVE_SEARCH_INPUT_VALUE(state, text) {
+            state.searchInputValue = text
+        },
         // Переключение темной/светлой темы
         TOGGLE_IS_DARK_THEME(state) {
             state.isDarkTheme = !state.isDarkTheme
@@ -91,9 +96,17 @@ export default {
         // Добавление новой задачи
         ADD_NEW_TASK(state, newTask) {
             state.tasks.unshift(newTask)
+            // Перезаписываем массив песочницу
+            state.tasksSandBox = state.tasks
         },
         // Фильтрация задач
         FILTER_TASKS(state, activeTaskNav) {
+            function resetIsZeroStatuses(){
+                // Обнуляем статусы отсутствующих задач 
+                for (let key in state.isZeroTasks) {
+                    state.isZeroTasks[key] = false
+                }
+            }
             // Фиксируем активный элемент навигации
             state.activeTaskNav = activeTaskNav
             // Удаляем активный статус у всех элементов навигации по задачам
@@ -105,42 +118,57 @@ export default {
             // Перезаписываем массив песочницу
             state.tasksSandBox = state.tasks
             // Обнуляем статусы отсутствующих задач 
-            state.isZeroTasks.isAllTasksZero = false
-            state.isZeroTasks.isActiveTasksZero = false
-            state.isZeroTasks.isDoneTasksZero = false
-            state.isZeroTasks.isSearchTasksZero = false
-            if (activeTaskNav.name === 'allTasks'){
-                state.isZeroTasks.isAllTasksZero = true
+            resetIsZeroStatuses()
+            // Если выбрано 'Все задачи'
+            if (activeTaskNav.name === 'allTasks') {
+                if (state.tasksSandBox.length === 0) {
+                    // Обозначаем положительный статус отсутствия всех задач
+                    state.isZeroTasks.isAllTasksZero = true
+                }
             }
             // Если выбрано 'Активные задачи'
             if (activeTaskNav.name === 'activeTasks') {
                 // Находим и удаляем активные задачи из песочницы
                 state.tasksSandBox = state.tasksSandBox.filter((item) => item.checkbox === false)
-                // Обозначаем положительный статус отсутствия активных задач
-                state.isZeroTasks.isActiveTasksZero = true
+                if (state.tasksSandBox.length === 0) {
+                    // Обозначаем положительный статус отсутствия активных задач
+                    state.isZeroTasks.isActiveTasksZero = true
+                }
             }
             // Если выбрано 'Завершенные задачи'
             if (activeTaskNav.name === 'doneTasks') {
                 // Находим и удаляем завершенные задачи из песочницы
                 state.tasksSandBox = state.tasksSandBox.filter((item) => item.checkbox === true)
-                // Обозначаем положительный статус отсутствия завершенных задач
-                state.isZeroTasks.isDoneTasksZero = true
+                if (state.tasksSandBox.length === 0) {
+                    // Обозначаем положительный статус отсутствия завершенных задач
+                    state.isZeroTasks.isDoneTasksZero = true
+                }
+            }
+            if (state.searchInputValue.length !== 0 && state.tasksSandBox.length === 0) {
+                // Обнуляем статусы отсутствующих задач 
+                resetIsZeroStatuses()
+                state.isZeroTasks.isSearchTasksZero = true
             }
         },
         // Поиск по тексту задачи
         GET_TASKS_BY_TEXT(state, response) {
             state.tasks = response.data.reverse()
+            // console.log('state.tasks', state.tasks)
             state.tasksSandBox = state.tasks
             // Обнуляем статусы отсутствующих задач 
-            state.isZeroTasks.isAllTasksZero = false
-            state.isZeroTasks.isActiveTasksZero = false
-            state.isZeroTasks.isDoneTasksZero = false
+            for (let key in state.isZeroTasks) {
+                state.isZeroTasks[key] = false
+            }
             if (!state.tasks.length) {
                 state.isZeroTasks.isSearchTasksZero = true
             }
         },
     },
     actions: {
+        // Запись содержимого поиска задачь
+        SAVE_SEARCH_INPUT_VALUE({ commit }, text) {
+            commit('SAVE_SEARCH_INPUT_VALUE', text)
+        },
         // Переключение темной/светлой темы
         TOGGLE_IS_DARK_THEME({ commit }) {
             commit('TOGGLE_IS_DARK_THEME')
@@ -226,6 +254,9 @@ export default {
         },
         IS_ZERO_TASKS(state) {
             return state.isZeroTasks
+        },
+        SEARCH_INPUT_VALUE(state) {
+            return state.searchInputValue
         }
     },
 }

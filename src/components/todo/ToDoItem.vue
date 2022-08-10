@@ -52,6 +52,8 @@ export default {
       deleteTask(task) {
          // Удаление выбранной задачи
          this.DELETE_TASK(task)
+         // Фильтрация задач при изменении статуса задачи
+         this.FILTER_TASKS(this.ACTIVE_TASK_NAV)
          // Обновление счетчиков задач
          this.COUNT_TASKS()
       },
@@ -59,7 +61,7 @@ export default {
       changeTaskStatus(task, activeTaskNav) {
          // Изменение статуса задачи
          this.CHANGE_TASK_STATUS(task)
-         setTimeout(() => { 
+         setTimeout(() => {
             // Обновление счетчиков задач
             this.COUNT_TASKS()
             // Фильтрация задач при изменении статуса задачи
@@ -87,6 +89,9 @@ export default {
    box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.194);
    border-radius: 6px;
    align-items: center;
+   @media (max-width: 850px) {
+      grid-template-columns: 0.5fr 14fr 2fr 1fr;
+   }
    .task-item__checkbox {
       margin-right: 10px;
    }
