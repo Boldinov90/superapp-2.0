@@ -2,6 +2,7 @@
    <div class="wrapper">
       <div class="todo animate__animated animate__fadeIn">
          <div class="todo__content content">
+            <!-- <MyButtonBurger /> -->
             <ToDoFilterNav class="content__navigation navigation">
                <div class="navigation__sidebar sidebar">
                   <div class="sidebar__search search">
@@ -74,6 +75,7 @@ import MyFormInput from '../components/UI/MyFormInput.vue'
 import MyButton from '../components/UI/MyButton.vue'
 import MyTextArea from '../components/UI/MyTextArea.vue'
 import MyAlert from '../components/UI/MyAlert.vue'
+// import MyButtonBurger from '../components/UI/MyButtonBurger.vue'
 
 export default {
    components: {
@@ -85,6 +87,7 @@ export default {
       MyButton,
       MyTextArea,
       MyAlert,
+      // MyButtonBurger
    },
    data() {
       return {
@@ -204,11 +207,22 @@ export default {
       .todo__content {
          display: grid;
          grid-template-columns: 1fr;
+         @media (max-width: 767px) {
+            // grid-template-columns: 1fr 1fr;
+         }
          .content__navigation {
+            // display: none;
+            @media (max-width: 767px) {
+               // display: grid;
+               // grid-template-columns: 1fr 1fr;
+            }
             .navigation__sidebar {
                margin-top: 35px;
-               display: flex;
-               flex-direction: column;
+               // display: flex;
+               // flex-direction: column;
+               @media (max-width: 767px) {
+                  display: flex;
+               }
                .btns {
                   margin-bottom: 7px;
                   background-color: $accent-color;

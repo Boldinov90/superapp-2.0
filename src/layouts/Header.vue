@@ -7,7 +7,7 @@
          <div class="header__logo">
             {{ textLogo }}
          </div>
-         <ul class="header__navigation">
+         <!-- <ul class="header__navigation">
             <li class="header__navigation-item">
                <router-link class="nav-item" to="/"> ToDo </router-link>
             </li>
@@ -21,7 +21,8 @@
                   Калькулятор
                </router-link>
             </li>
-         </ul>
+         </ul> -->
+         <DesktopNavigation />
          <MyButton
             class="header__btn"
             v-if="!IS_DARK_THEME"
@@ -34,6 +35,7 @@
             :valueBtn="'Светлая тема'"
             @click="toggleDarkTheme"
          />
+         <MobileNavigation class="header__menu-burger" />
       </div>
    </header>
 </template>
@@ -41,9 +43,15 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import MyButton from '../components/UI/MyButton.vue'
+import MobileNavigation from '../layouts/MobileNavigation.vue'
+import DesktopNavigation from '../layouts/DesktopNavigation.vue'
 
 export default {
-   components: { MyButton },
+   components: {
+      MyButton,
+      MobileNavigation,
+      DesktopNavigation,
+   },
    data() {
       return {
          textLogo: 'SUPERAPP 2.0',
@@ -82,24 +90,34 @@ export default {
             cursor: pointer;
          }
       }
-      .header__navigation {
-         @extend %flexallcenter;
-         justify-content: space-between;
-         column-gap: 20px;
-         flex-wrap: wrap;
-         .header__navigation-item {
-            .nav-item {
-               color: $text-menu-color;
-            }
-            .active {
-               color: $accent-color;
-               border-bottom: 2px solid $accent-color;
-            }
-         }
-      }
+      // .header__navigation {
+      //    @extend %flexallcenter;
+      //    justify-content: space-between;
+      //    column-gap: 20px;
+      //    flex-wrap: wrap;
+      //    @media (max-width: 650px) {
+      //       display: none;
+      //    }
+      //    .header__navigation-item {
+      //       .nav-item {
+      //          color: $text-menu-color;
+      //       }
+      //       .active {
+      //          color: $accent-color;
+      //          border-bottom: 2px solid $accent-color;
+      //       }
+      //    }
+
+      // }
       .header__btn {
          background-color: $accent-color;
          color: $text-button-color;
+      }
+      .header__menu-burger {
+         display: none;
+         @media (max-width: 650px) {
+            display: block;
+         }
       }
    }
 }
