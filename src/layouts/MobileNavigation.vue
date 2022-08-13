@@ -59,7 +59,7 @@ export default {
    display: flex;
    align-items: center;
    position: absolute;
-   top: 20px;
+   top: 17px;
    right: 20px;
    width: 26px;
    height: 26px;

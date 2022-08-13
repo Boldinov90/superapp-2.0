@@ -42,7 +42,6 @@ export default {
 
 <style lang="scss" scoped>
 .todo-filter-nav-wrapper {
-   position: fixed;
    .todo-filter-nav {
       width: 230px;
       .todo-filter-nav-item {

@@ -2,7 +2,6 @@
    <div class="wrapper">
       <div class="todo animate__animated animate__fadeIn">
          <div class="todo__content content">
-            <!-- <MyButtonBurger /> -->
             <ToDoFilterNav class="content__navigation navigation">
                <div class="navigation__sidebar sidebar">
                   <div class="sidebar__search search">
@@ -211,18 +210,15 @@ export default {
             // grid-template-columns: 1fr 1fr;
          }
          .content__navigation {
-            // display: none;
+            position: fixed;
+            transform: scale(1);
+            transition: 0.3s;
             @media (max-width: 767px) {
-               // display: grid;
-               // grid-template-columns: 1fr 1fr;
+               transform: scale(0);
+               transition: 0.15s;
             }
             .navigation__sidebar {
                margin-top: 35px;
-               // display: flex;
-               // flex-direction: column;
-               @media (max-width: 767px) {
-                  display: flex;
-               }
                .btns {
                   margin-bottom: 7px;
                   background-color: $accent-color;
@@ -260,6 +256,11 @@ export default {
          }
          .content__todo-list {
             margin-left: 250px;
+            transition: 0.2s;
+            @media (max-width: 767px) {
+               margin: 0;
+               transition: 0.6s;
+            }
          }
          .content__form-change-task {
             animation-duration: 0.2s;
