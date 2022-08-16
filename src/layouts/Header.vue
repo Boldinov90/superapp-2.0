@@ -7,7 +7,21 @@
          <div class="header__logo">
             {{ textLogo }}
          </div>
-         <DesktopNavigation />
+         <ul class="header__navigation">
+            <li class="header__navigation-item">
+               <router-link class="nav-item" to="/"> ToDo </router-link>
+            </li>
+            <li class="header__navigation-item">
+               <router-link class="nav-item" to="/css-animate">
+                  CSS Анимации
+               </router-link>
+            </li>
+            <li class="header__navigation-item">
+               <router-link class="nav-item" to="/calculator">
+                  Калькулятор
+               </router-link>
+            </li>
+         </ul>
          <MyButton
             class="header__btn"
             v-if="!IS_DARK_THEME"
@@ -20,7 +34,23 @@
             :valueBtn="'Светлая тема'"
             @click="toggleDarkTheme"
          />
-         <MobileNavigation class="header__menu-burger" />
+         <MyBurgerWrapper class="header__menu-burger">
+            <ul class="menu__box" :class="{ 'menu__box-dark': IS_DARK_THEME }">
+               <li class="header__navigation-item">
+                  <router-link class="menu__item" to="/"> ToDo </router-link>
+               </li>
+               <li class="header__navigation-item">
+                  <router-link class="menu__item" to="/css-animate">
+                     CSS Анимации
+                  </router-link>
+               </li>
+               <li class="header__navigation-item">
+                  <router-link class="menu__item" to="/calculator">
+                     Калькулятор
+                  </router-link>
+               </li>
+            </ul>
+         </MyBurgerWrapper>
       </div>
    </header>
 </template>
@@ -28,14 +58,12 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import MyButton from '../components/UI/MyButton.vue'
-import MobileNavigation from '../layouts/MobileNavigation.vue'
-import DesktopNavigation from '../layouts/DesktopNavigation.vue'
+import MyBurgerWrapper from '../components/UI/MyBurgerWrapper.vue'
 
 export default {
    components: {
       MyButton,
-      MobileNavigation,
-      DesktopNavigation,
+      MyBurgerWrapper,
    },
    data() {
       return {
@@ -75,6 +103,24 @@ export default {
             cursor: pointer;
          }
       }
+      .header__navigation {
+         @extend %flexallcenter;
+         justify-content: space-between;
+         column-gap: 20px;
+         flex-wrap: wrap;
+         @media (max-width: 650px) {
+            display: none;
+         }
+         .header__navigation-item {
+            .nav-item {
+               color: $text-menu-color;
+            }
+            .active {
+               color: $accent-color;
+               border-bottom: 2px solid $accent-color;
+            }
+         }
+      }
       .header__btn {
          background-color: $accent-color;
          color: $text-button-color;
@@ -83,6 +129,40 @@ export default {
          display: none;
          @media (max-width: 650px) {
             display: block;
+         }
+         .menu__box {
+            display: block;
+            position: fixed;
+            visibility: hidden;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100%;
+            margin: 0;
+            padding: 80px 0;
+            list-style: none;
+            background-color: $background-color-container;
+            box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+            transition-duration: 0.25s;
+         }
+         .menu__box-dark {
+            background-color: $background-color-dark-container;
+         }
+         .header__navigation-item {
+            .menu__item {
+               display: block;
+               padding: 8px 0;
+               margin: 0px 24px;
+               color: $text-menu-color;
+               font-size: 14px;
+               font-weight: 400;
+               text-decoration: none;
+               transition-duration: 0.25s;
+            }
+            .active {
+               color: $accent-color;
+               font-weight: 600;
+            }
          }
       }
    }
