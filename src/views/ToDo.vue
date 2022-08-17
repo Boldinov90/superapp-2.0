@@ -29,38 +29,6 @@
                   </div>
                </div>
             </ToDoFilterNav>
-            <!-- <MyBurgerWrapper class="content__navigation-burger">
-               <ToDoFilterNav class="content__navigation navigation">
-                  <div class="navigation__sidebar sidebar">
-                     <div class="sidebar__search search">
-                        <MyFormInput
-                           :textPlaceholder="'Поиск'"
-                           class="search__input"
-                           v-model="searchInputValue"
-                        />
-                        <div
-                           class="search__btn-clear"
-                           @click="clearSearchInput"
-                        >
-                           &#10005;
-                        </div>
-                     </div>
-                     <div class="sidebar__add-new-task add-new-task">
-                        <MyTextArea
-                           class="add-new-task__text-area"
-                           :textPlaceholder="'Введите текст новой задачи'"
-                           v-model="newTaskTitle"
-                           @keydown.enter="addNewTask"
-                        />
-                        <MyButton
-                           :valueBtn="'Добавить новую задачу'"
-                           class="add-new-task__btn btns"
-                           @click="addNewTask"
-                        />
-                     </div>
-                  </div>
-               </ToDoFilterNav>
-            </MyBurgerWrapper> -->
             <ToDoList class="content__todo-list" @taskFromItem="taskFromItem" />
             <MyForm
                :formTitle="'Редактирование'"
@@ -106,7 +74,6 @@ import MyFormInput from '../components/UI/MyFormInput.vue'
 import MyButton from '../components/UI/MyButton.vue'
 import MyTextArea from '../components/UI/MyTextArea.vue'
 import MyAlert from '../components/UI/MyAlert.vue'
-import MyBurgerWrapper from '../components/UI/MyBurgerWrapper.vue'
 
 export default {
    components: {
@@ -118,7 +85,6 @@ export default {
       MyButton,
       MyTextArea,
       MyAlert,
-      MyBurgerWrapper,
    },
    data() {
       return {
@@ -285,19 +251,6 @@ export default {
                      margin-bottom: 10px;
                   }
                }
-            }
-         }
-         .content__navigation-burger {
-            // position: fixed;
-            // left: 0;
-            // top: 100px;
-            display: none;
-            @media (max-width: 767px) {
-               position: fixed;
-               left: 50px;
-               top: 100px;
-               display: block;
-               background-color: red;
             }
          }
 

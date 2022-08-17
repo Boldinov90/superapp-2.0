@@ -13,12 +13,12 @@
     {
       "id": 1660054859942,
       "taskTitle": "Помыть посуду",
-      "checkbox": false
+      "checkbox": true
     },
     {
       "id": 1660054867940,
       "taskTitle": "Покормить кошку",
-      "checkbox": true
+      "checkbox": false
     },
     {
       "id": 1660054876018,

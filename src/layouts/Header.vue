@@ -7,50 +7,9 @@
          <div class="header__logo">
             {{ textLogo }}
          </div>
-         <ul class="header__navigation">
-            <li class="header__navigation-item">
-               <router-link class="nav-item" to="/"> ToDo </router-link>
-            </li>
-            <li class="header__navigation-item">
-               <router-link class="nav-item" to="/css-animate">
-                  CSS Анимации
-               </router-link>
-            </li>
-            <li class="header__navigation-item">
-               <router-link class="nav-item" to="/calculator">
-                  Калькулятор
-               </router-link>
-            </li>
-         </ul>
-         <MyButton
-            class="header__btn"
-            v-if="!IS_DARK_THEME"
-            :valueBtn="'Темная тема'"
-            @click="toggleDarkTheme"
-         />
-         <MyButton
-            class="header__btn"
-            v-else
-            :valueBtn="'Светлая тема'"
-            @click="toggleDarkTheme"
-         />
-         <MyBurgerWrapper class="header__menu-burger">
-            <ul class="menu__box" :class="{ 'menu__box-dark': IS_DARK_THEME }">
-               <li class="header__navigation-item">
-                  <router-link class="menu__item" to="/"> ToDo </router-link>
-               </li>
-               <li class="header__navigation-item">
-                  <router-link class="menu__item" to="/css-animate">
-                     CSS Анимации
-                  </router-link>
-               </li>
-               <li class="header__navigation-item">
-                  <router-link class="menu__item" to="/calculator">
-                     Калькулятор
-                  </router-link>
-               </li>
-            </ul>
-         </MyBurgerWrapper>
+         <HeaderNavigation class="header__navigation"/>
+         <HeaderToggleTheme class="header__toggle" @change="toggleDarkTheme"/>
+         <BurgerHeaderNavigation class="header__menu-burger"/>
       </div>
    </header>
 </template>
@@ -58,12 +17,16 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import MyButton from '../components/UI/MyButton.vue'
-import MyBurgerWrapper from '../components/UI/MyBurgerWrapper.vue'
+import BurgerHeaderNavigation from '../components/BurgerHeaderNavigation.vue'
+import HeaderNavigation from '../components/HeaderNavigation.vue'
+import HeaderToggleTheme from '../components/HeaderToggleTheme.vue'
 
 export default {
    components: {
       MyButton,
-      MyBurgerWrapper,
+      BurgerHeaderNavigation,
+      HeaderNavigation,
+      HeaderToggleTheme
    },
    data() {
       return {
@@ -97,7 +60,7 @@ export default {
       justify-content: space-between;
       z-index: 9;
       .header__logo {
-         font-size: 20px;
+         font-size: 18px;
          &:hover {
             color: $accent-color;
             cursor: pointer;
@@ -120,10 +83,6 @@ export default {
                border-bottom: 2px solid $accent-color;
             }
          }
-      }
-      .header__btn {
-         background-color: $accent-color;
-         color: $text-button-color;
       }
       .header__menu-burger {
          display: none;
