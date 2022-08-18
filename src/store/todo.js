@@ -6,6 +6,7 @@ export default {
         isAlertOpen: false,
         textAlert: '',
         isDarkTheme: false,
+        isFilterMenuActive: false,
         activeTaskNav: {
             name: 'allTasks',
             value: 'Все задачи',
@@ -106,6 +107,10 @@ export default {
                     state.isZeroTasks[key] = false
                 }
             }
+            // Закрываем панельфильтрации после нажатия
+            if (state.isFilterMenuActive) {
+                state.isFilterMenuActive = !state.isFilterMenuActive
+            }
             // Фиксируем активный элемент навигации
             state.activeTaskNav = activeTaskNav
             // Удаляем активный статус у всех элементов навигации по задачам
@@ -162,6 +167,10 @@ export default {
                 state.isZeroTasks.isSearchTasksZero = true
             }
         },
+        // Изменение статуса открытия фильтрации задач
+        TOGGLE_IS_FILTER_MENU_ACTIVE(state){
+            state.isFilterMenuActive = !state.isFilterMenuActive
+        }
     },
     actions: {
         // Запись содержимого поиска задачь
@@ -222,6 +231,10 @@ export default {
         async GET_TASKS_BY_TEXT({ commit }, text) {
             const response = await axios.get(`http://localhost:3000/tasks?taskTitle_like=${text}`)
             commit('GET_TASKS_BY_TEXT', response)
+        },
+        // Открытие фильтрации задач
+        TOGGLE_IS_FILTER_MENU_ACTIVE({commit}){
+            commit('TOGGLE_IS_FILTER_MENU_ACTIVE')
         }
     },
     getters: {
@@ -259,6 +272,10 @@ export default {
         // Содержимое поля ввода поиска задач
         SEARCH_INPUT_VALUE(state) {
             return state.searchInputValue
+        },
+        // Статус открытия фильтрации задач
+        IS_FILTER_MENU_ACTIVE(state){
+            return state.isFilterMenuActive
         }
     },
 }

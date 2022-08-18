@@ -41,7 +41,6 @@ export default {
    justify-content: space-between;
    column-gap: 20px;
    flex-wrap: wrap;
-   // flex-direction: var(--flexDirection);
    @media (max-width: 650px) {
       display: none;
    }
@@ -55,22 +54,5 @@ export default {
       }
    }
 }
-.menu__box {
-   display: block;
-   position: fixed;
-   visibility: hidden;
-   top: 0;
-   right: -100%;
-   width: 300px;
-   height: 100%;
-   margin: 0;
-   padding: 80px 0;
-   list-style: none;
-   background-color: $background-color-container;
-   box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
-   transition-duration: 0.25s;
-}
-.menu__box-dark {
-   background-color: $background-color-dark-container;
-}
+
 </style>

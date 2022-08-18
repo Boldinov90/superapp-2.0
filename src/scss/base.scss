@@ -10,8 +10,10 @@
    margin: 0 auto;
    background-color: $background-color-container;
    position: relative;
+   transition: 0.3s;
 }
 .dark-container {
    background-color: $background-color-dark-container;
    color: $text-dark-color;
+   transition: 0.3s;
 }

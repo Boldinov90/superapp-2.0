@@ -2,7 +2,15 @@
    <div class="wrapper">
       <div class="todo animate__animated animate__fadeIn">
          <div class="todo__content content">
-            <ToDoFilterNav class="content__navigation navigation">
+            <img
+               class="todo-filter-icon"
+               src="@/assets/img/filter-menu-icon.svg"
+               @click="mobileToDofilterOpenClose"
+            />
+            <ToDoFilterNav
+               class="content__navigation navigation"
+               :class="{ 'content__navigation-active': IS_FILTER_MENU_ACTIVE }"
+            >
                <div class="navigation__sidebar sidebar">
                   <div class="sidebar__search search">
                      <MyFormInput
@@ -100,6 +108,7 @@ export default {
          'IS_FORM_CHANGE_TASK_OPEN',
          'TEXT_ALERT',
          'ACTIVE_TASK_NAV',
+         'IS_FILTER_MENU_ACTIVE',
       ]),
    },
    methods: {
@@ -112,6 +121,7 @@ export default {
          'FILTER_TASKS',
          'GET_TASKS_BY_TEXT',
          'SAVE_SEARCH_INPUT_VALUE',
+         'TOGGLE_IS_FILTER_MENU_ACTIVE',
       ]),
       // Закрытие формы изменения текста задачи
       closeFormChangeTask() {
@@ -181,6 +191,10 @@ export default {
       clearSearchInput() {
          this.searchInputValue = ''
       },
+      // Открытие/закрытие панели фильтрации задач
+      mobileToDofilterOpenClose() {
+         this.TOGGLE_IS_FILTER_MENU_ACTIVE()
+      },
    },
    watch: {
       // При изменении поля ввода поиска
@@ -206,11 +220,28 @@ export default {
          grid-template-columns: 1fr;
          @media (max-width: 767px) {
          }
+         .todo-filter-icon {
+            display: none;
+            position: fixed;
+            top: 73px;
+            cursor: pointer;
+            transition: 0.3s;
+            &:hover {
+               transform: scale(1.05);
+               transition: 0.3s;
+            }
+            @media (max-width: 767px) {
+               display: block;
+            }
+         }
          .content__navigation {
             position: fixed;
-            transition: 0.6s;
+            transition: 0.3s;
+            height: 100vh;
             @media (max-width: 1100px) {
-               left: 20px;
+               padding-left: 20px;
+               padding-right: 20px;
+               left: 0;
             }
             @media (max-width: 767px) {
                left: -100%;
@@ -253,9 +284,12 @@ export default {
                }
             }
          }
-
+         .content__navigation-active {
+            left: 0;
+            transition: 0.3s;
+         }
          .content__todo-list {
-            margin-left: 250px;
+            margin-left: 260px;
             transition: 0.2s;
             @media (max-width: 767px) {
                margin-left: 50px;
