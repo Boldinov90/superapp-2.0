@@ -107,10 +107,6 @@ export default {
                     state.isZeroTasks[key] = false
                 }
             }
-            // Закрываем панельфильтрации после нажатия
-            if (state.isFilterMenuActive) {
-                state.isFilterMenuActive = !state.isFilterMenuActive
-            }
             // Фиксируем активный элемент навигации
             state.activeTaskNav = activeTaskNav
             // Удаляем активный статус у всех элементов навигации по задачам
