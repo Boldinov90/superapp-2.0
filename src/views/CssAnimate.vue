@@ -4,6 +4,7 @@
          <CssAnimateFlipCards />
          <CssAnimateMovementOfImages />
          <CssAnimateBallJump />
+         <CssAnimateBallPendulum />
       </div>
    </div>
 </template>
@@ -12,11 +13,13 @@
 import CssAnimateFlipCards from '../components/css-animate/CssAnimateFlipCards.vue'
 import CssAnimateMovementOfImages from '../components/css-animate/CssAnimateMovementOfImages.vue'
 import CssAnimateBallJump from '../components/css-animate/CssAnimateBallJump.vue'
+import CssAnimateBallPendulum from '../components/css-animate/CssAnimateBallPendulum.vue'
 export default {
    components: {
       CssAnimateFlipCards,
       CssAnimateMovementOfImages,
-      CssAnimateBallJump
+      CssAnimateBallJump,
+      CssAnimateBallPendulum
    },
    data() {
       return {
