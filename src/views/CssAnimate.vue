@@ -19,13 +19,8 @@ export default {
       CssAnimateFlipCards,
       CssAnimateMovementOfImages,
       CssAnimateBallJump,
-      CssAnimateBallPendulum
+      CssAnimateBallPendulum,
    },
-   data() {
-      return {
-      }
-   },
-   methods: {},
 }
 </script>
 

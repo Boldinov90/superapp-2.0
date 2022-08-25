@@ -7,7 +7,10 @@
          </label>
          <ul class="menu__box" :class="{ 'menu__box-dark': IS_DARK_THEME }">
             <li class="header__navigation-item">
-               <router-link class="menu__item" to="/"> ToDo </router-link>
+               <router-link class="menu__item" to="/"> Home </router-link>
+            </li>
+            <li class="header__navigation-item">
+               <router-link class="menu__item" to="/todo"> ToDo </router-link>
             </li>
             <li class="header__navigation-item">
                <router-link class="menu__item" to="/css-animate">
@@ -28,7 +31,6 @@
 import { mapGetters } from 'vuex'
 
 export default {
-
    computed: {
       ...mapGetters(['IS_DARK_THEME']),
    },

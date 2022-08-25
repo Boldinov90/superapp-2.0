@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Home from '../views/Home.vue'
 import ToDo from '../views/ToDo.vue'
 import CssAnimate from '../views/CssAnimate.vue'
 import Calculator from '../views/Calculator.vue'
@@ -6,7 +7,12 @@ import Calculator from '../views/Calculator.vue'
 const routes = [
    {
       path: '/',
-      name: 'toDo',
+      name: 'home',
+      component: Home,
+   },
+   {
+      path: '/todo',
+      name: 'todo',
       component: ToDo,
    },
    {
@@ -18,7 +24,7 @@ const routes = [
       path: '/calculator',
       name: 'calculator',
       component: Calculator,
-   }
+   },
 ]
 
 const router = createRouter({

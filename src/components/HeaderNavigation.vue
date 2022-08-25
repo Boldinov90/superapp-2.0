@@ -2,7 +2,10 @@
    <div>
       <ul class="header__navigation">
          <li class="header__navigation-item">
-            <router-link class="nav-item" to="/"> ToDo </router-link>
+            <router-link class="nav-item" to="/"> Home </router-link>
+         </li>
+         <li class="header__navigation-item">
+            <router-link class="nav-item" to="/todo"> ToDo </router-link>
          </li>
          <li class="header__navigation-item">
             <router-link class="nav-item" to="/css-animate">
@@ -24,9 +27,6 @@ import { mapGetters } from 'vuex'
 export default {
    data() {
       return {
-         // css: {
-         //    'flexDirection': (this.flexDirection)
-         // }
       }
    },
    computed: {
@@ -54,5 +54,4 @@ export default {
       }
    }
 }
-
 </style>
