@@ -40,23 +40,23 @@ export default {
 <style lang="scss">
 #idName {
    opacity: 0;
+   &:checked ~ .menu__btn > span {
+      transform: rotate(45deg);
+   }
+   &:checked ~ .menu__btn > span::before {
+      top: 0;
+      transform: rotate(0);
+   }
+   &:checked ~ .menu__btn > span::after {
+      top: 0;
+      transform: rotate(90deg);
+   }
+   &:checked ~ .menu__box {
+      visibility: visible;
+      right: 0;
+   }
 }
 
-#idName:checked ~ .menu__btn > span {
-   transform: rotate(45deg);
-}
-#idName:checked ~ .menu__btn > span::before {
-   top: 0;
-   transform: rotate(0);
-}
-#idName:checked ~ .menu__btn > span::after {
-   top: 0;
-   transform: rotate(90deg);
-}
-#idName:checked ~ .menu__box {
-   visibility: visible;
-   right: 0;
-}
 
 .menu__btn {
    display: flex;
