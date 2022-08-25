@@ -6,19 +6,26 @@
       <p
          class="welcome__subtitle animate__animated animate__fadeIn animate__delay-1s"
       >
-         Добро пожаловать в мое первое приложение, не имеющее абсолютно никакой
-         смысловой нагрузки, созданное исключительно ради практики, демонстрации
-         навыков и на потеху опытным разработчикам.
+         <span>Д</span>обро пожаловать в мое первое приложение, не имеющее
+         абсолютно никакой смысловой нагрузки, созданное исключительно ради
+         практики, демонстрации навыков и на потеху опытным разработчикам.
       </p>
       <p
          class="welcome__subtitle animate__animated animate__fadeIn animate__delay-2s"
       >
-         Back End написан на Nest.js с помощью NEST/CLI. Применены инструменты:
-         typeScript, jwt, passport, mongoose/typegoose, bcrypt, validator. В
-         качестве BD используется MongoDB.<br />
-         Front End написан на Vue.js с помощью VUE/CLI. Применены инструменты:
-         VUEX, VUE-Router, SASS/SCSS, Axios, Animate.css и Google естественно,
-         куда же без него &#128521;
+         <span>Ф</span>окус направлен на то, что под капотом, дизайн придуман из
+         головы во время верстки. <br />
+         Прекрасно понимаю, что работа далека от идеала, но знаю, что это всего
+         лишь вопрос времени. Буду очень признателен за любую критику, это
+         сделает меня только лучше.
+      </p>
+      <p
+         class="welcome__subtitle animate__animated animate__fadeIn animate__delay-2s"
+      >
+         <span>Р</span>абота написана на Vue.js с помощью VUE/CLI. Применены
+         инструменты: VUEX, VUE-Router, SASS/SCSS, Axios, Animate.css,
+         json-server (фейковый API), concurrently (плагин одновременного запуска
+         Front и Back) и Google естественно, куда же без него &#128521;
       </p>
       <div
          class="welcome__images images animate__animated animate__fadeIn animate__delay-3s"
@@ -65,6 +72,11 @@ export default {
       letter-spacing: 1.1px;
       color: $text-menu-color;
       --animate-delay: 0.5s;
+      span {
+         color: $accent-color;
+         font-size: 20px;
+         font-weight: 600;
+      }
    }
    .welcome__images {
       display: flex;
