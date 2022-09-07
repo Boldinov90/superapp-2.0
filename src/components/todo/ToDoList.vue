@@ -29,7 +29,7 @@ export default {
       ToDoItem,
    },
    computed: {
-      ...mapGetters(['TASKS_SANDBOX', 'IS_ZERO_TASKS']),
+      ...mapGetters(['TASKS_SANDBOX', 'IS_ZERO_TASKS', 'TASKS_SANDBOX']),
    },
    methods: {
       // Передача родительскому компоненту текста из задачи

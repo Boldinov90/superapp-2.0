@@ -1,7 +1,7 @@
 <template>
    <div class="task-item">
       <input
-         v-model="task.checkbox"
+         :v-model="task.checkbox"
          class="task-item__checkbox"
          type="checkbox"
          :checked="task.checkbox"
