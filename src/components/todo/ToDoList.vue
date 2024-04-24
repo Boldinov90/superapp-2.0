@@ -17,7 +17,6 @@
       <div v-else-if="IS_ZERO_TASKS.isSearchTasksZero">
          Ничего не найдено.
       </div>
-
    </div>
 </template>
 
