@@ -60,7 +60,7 @@ export default {
       })
       // Фильтрация задач
       this.FILTER_TASKS(this.ACTIVE_TASK_NAV)
-      // Отслеживание изменения ширины страницы и закрытие панели фильтрации
+      // Отслеживание изменения ширины страницы и закрытие панели фильтрации.
       addEventListener('resize', (event) => {
          if (this.IS_FILTER_MENU_ACTIVE) {
             this.TOGGLE_IS_FILTER_MENU_ACTIVE()
