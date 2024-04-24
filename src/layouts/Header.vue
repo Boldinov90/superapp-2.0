@@ -4,9 +4,9 @@
          class="header container"
          :class="{ 'dark-container': IS_DARK_THEME }"
       >
-         <div class="header__logo">
+         <router-link class="header__logo" to="/">
             {{ textLogo }}
-         </div>
+         </router-link>
          <HeaderNavigation class="header__navigation"/>
          <HeaderToggleTheme class="header__toggle" @change="toggleDarkTheme"/>
          <BurgerHeaderNavigation class="header__menu-burger"/>
@@ -61,6 +61,7 @@ export default {
       z-index: 9;
       .header__logo {
          font-size: 18px;
+         color: $accent-color;
          &:hover {
             color: $accent-color;
             cursor: pointer;
